@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SmoothScrollProvider } from "@/components/animations/SmoothScrollProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { bodyFont, displayFont } from "@/lib/fonts";
+import { bodyFont } from "@/lib/fonts";
 import { siteConfig } from "@/lib/data/site";
 import "./globals.css";
 
@@ -37,7 +37,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased`}
+      className={`${bodyFont.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider

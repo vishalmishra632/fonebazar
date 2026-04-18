@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { easeHero } from "@/lib/animations";
+import { EASE_HERO } from "@/lib/animations";
 
 interface AnimatedTextProps {
   text: string;
@@ -29,7 +29,7 @@ export function AnimatedText({ text, className, as = "h1" }: AnimatedTextProps) 
           className="inline-block whitespace-pre"
           variants={{
             hidden: { opacity: 0, y: 30 },
-            show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeHero } },
+            show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_HERO } },
           }}
         >
           {word}

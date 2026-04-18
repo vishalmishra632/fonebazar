@@ -1,18 +1,21 @@
 export const siteConfig = {
   name: "fonebazar",
-  tagline: "[DECIDE IN PHASE 1 — e.g., \"Where ideas become objects\"]",
+  tagline: "Where ideas become objects",
   description:
-    "[DECIDE IN PHASE 1 — SEO description, 150–160 chars]",
-  url: "https://fonebazar.example.com",
+    "Sault Ste. Marie's creative studio for 3D printing, laser engraving, resin art, t-shirt printing, and decal printing. From file to finished piece — crafted locally.",
+  url: "https://fonebazar.ca",
   whatsapp: {
-    number: "{REPLACE_WITH_WHATSAPP_NUMBER_INTL_FORMAT_NO_PLUS}",
-    displayNumber: "+91 [REPLACE]",
+    number: "17059710676",
+    displayNumber: "+1 (705) 971-0676",
     messagePrefix: "Hi fonebazar, I'd like to place an order:",
   },
   contact: {
-    email: "[REPLACE]",
-    phone: "[REPLACE]",
-    address: "[REPLACE]",
+    email: "hello@fonebazar.ca",
+    phone: "+1 (705) 971-0676",
+    address: "Sault Ste. Marie, Ontario, Canada",
+    city: "Sault Ste. Marie",
+    region: "ON",
+    country: "CA",
   },
   social: {
     instagram: "",
