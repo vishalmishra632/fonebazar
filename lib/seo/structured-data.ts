@@ -1,5 +1,6 @@
 import { siteConfig } from "../data/site";
 import { homeFaqs } from "../data/services-content";
+import { servicesFaqs } from "../data/services-detail";
 
 export function generateWebSiteSchema() {
   return {
@@ -75,6 +76,41 @@ export const homeFaqJsonLd = {
       "@type": "Answer",
       text: faq.answer,
     },
+  })),
+};
+
+export const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: [
+    "3D Printing",
+    "Laser Engraving",
+    "Resin Art",
+    "T-Shirt Printing",
+    "Decal Printing",
+  ],
+  provider: {
+    "@type": "LocalBusiness",
+    "@id": `${siteConfig.url}/#business`,
+    name: siteConfig.name,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Sault Ste. Marie",
+      addressRegion: "ON",
+      addressCountry: "CA",
+    },
+  },
+  areaServed: { "@type": "Place", name: "Canada" },
+  url: `${siteConfig.url}/services`,
+};
+
+export const servicesFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: servicesFaqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
   })),
 };
 

@@ -11,6 +11,7 @@ const SERVICE_LINKS = siteConfig.services.map((service) => ({
 
 const COMPANY_LINKS = [
   { label: "Home", href: "/" },
+  { label: "Our Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Our Store", href: "/store" },
   { label: "Contact", href: "/contact" },
