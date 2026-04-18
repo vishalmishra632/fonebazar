@@ -114,6 +114,29 @@ export const servicesFaqJsonLd = {
   })),
 };
 
+export const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About fonebazar",
+  url: `${siteConfig.url}/about`,
+  description:
+    "A small workshop in Sault Ste. Marie running five crafts: 3D printing, laser engraving, resin art, t-shirt printing, and decal printing.",
+  mainEntity: {
+    "@type": "LocalBusiness",
+    "@id": `${siteConfig.url}/#business`,
+    name: siteConfig.name,
+    foundingDate: "2022",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Sault Ste. Marie",
+      addressRegion: "ON",
+      addressCountry: "CA",
+    },
+    telephone: "+1-705-971-0676",
+    email: siteConfig.contact.email,
+  },
+};
+
 export function escapeJsonLd(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
