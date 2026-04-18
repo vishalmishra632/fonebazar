@@ -1,15 +1,20 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { useRef, type MouseEvent } from "react";
+import dynamic from "next/dynamic";
 import { useLenis } from "lenis/react";
 import { Container } from "@/components/shared/Container";
 import { Magnetic } from "@/components/animations/Magnetic";
 import { Em } from "@/components/shared/ItalicEmphasis";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { HomeHeroFallback } from "@/components/three/scenes/HomeHeroFallback";
 import { buildWhatsAppOrderURL } from "@/lib/whatsapp";
 import { EASE_HERO } from "@/lib/animations";
+
+const HomeHeroScene = dynamic(
+  () => import("@/components/three/scenes/HomeHeroScene"),
+  { ssr: false, loading: () => <HomeHeroFallback /> },
+);
 
 const heroContainer = {
   hidden: { opacity: 0 },
@@ -30,28 +35,7 @@ const heroItem = {
 };
 
 export function HeroSection() {
-  const reduced = useReducedMotion();
   const lenis = useLenis();
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 80, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 80, damping: 20 });
-
-  const shape1X = useTransform(springX, [-0.5, 0.5], [-20, 20]);
-  const shape1Y = useTransform(springY, [-0.5, 0.5], [-15, 15]);
-  const shape2X = useTransform(springX, [-0.5, 0.5], [15, -15]);
-  const shape2Y = useTransform(springY, [-0.5, 0.5], [10, -10]);
-  const shape3X = useTransform(springX, [-0.5, 0.5], [-8, 8]);
-  const shape3Y = useTransform(springY, [-0.5, 0.5], [-6, 6]);
-
-  function handleMove(event: MouseEvent<HTMLDivElement>) {
-    if (reduced) return;
-    const rect = wrapperRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set((event.clientX - rect.left) / rect.width - 0.5);
-    mouseY.set((event.clientY - rect.top) / rect.height - 0.5);
-  }
 
   function scrollToServices() {
     if (lenis) {
@@ -65,8 +49,6 @@ export function HeroSection() {
 
   return (
     <section
-      ref={wrapperRef}
-      onMouseMove={handleMove}
       aria-labelledby="home-hero-heading"
       className="relative flex min-h-[100svh] items-center overflow-hidden pt-24 pb-20 lg:pt-28"
     >
@@ -156,56 +138,9 @@ export function HeroSection() {
 
             <div
               aria-hidden
-              className="col-span-12 hidden h-[360px] lg:col-span-5 lg:block"
+              className="relative col-span-12 hidden h-[360px] lg:col-span-5 lg:block"
             >
-              <div className="relative h-full w-full">
-                <motion.div
-                  style={{ x: shape1X, y: shape1Y }}
-                  animate={
-                    reduced
-                      ? undefined
-                      : { rotate: [0, 8, 0, -8, 0], y: [0, -12, 0, 8, 0] }
-                  }
-                  transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute right-[30%] top-0 h-44 w-44"
-                >
-                  <div
-                    className="h-full w-full rounded-[2rem] bg-brand/30 backdrop-blur-sm"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 40px oklch(0.92 0.19 103 / 0.35))",
-                    }}
-                  />
-                </motion.div>
-                <motion.div
-                  style={{ x: shape2X, y: shape2Y }}
-                  animate={
-                    reduced
-                      ? undefined
-                      : { rotate: [0, -10, 0, 10, 0], x: [0, 10, 0, -10, 0] }
-                  }
-                  transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute right-[8%] top-[45%] h-52 w-52"
-                >
-                  <div
-                    className="h-full w-full rounded-full bg-brand/20"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 60px oklch(0.92 0.19 103 / 0.4))",
-                    }}
-                  />
-                </motion.div>
-                <motion.div
-                  style={{ x: shape3X, y: shape3Y }}
-                  animate={
-                    reduced ? undefined : { rotate: [0, 20, 0], y: [0, -6, 0] }
-                  }
-                  transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute bottom-0 left-[12%] h-36 w-36"
-                >
-                  <Hexagon />
-                </motion.div>
-              </div>
+              <HomeHeroScene />
             </div>
           </div>
         </motion.div>
@@ -234,20 +169,3 @@ export function HeroSection() {
   );
 }
 
-function Hexagon() {
-  return (
-    <svg viewBox="0 0 200 200" className="h-full w-full">
-      <defs>
-        <linearGradient id="hex-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="oklch(0.92 0.19 103 / 0.5)" />
-          <stop offset="100%" stopColor="oklch(0.92 0.19 103 / 0.1)" />
-        </linearGradient>
-      </defs>
-      <polygon
-        points="100,10 180,55 180,145 100,190 20,145 20,55"
-        fill="url(#hex-grad)"
-        style={{ filter: "drop-shadow(0 0 30px oklch(0.92 0.19 103 / 0.35))" }}
-      />
-    </svg>
-  );
-}

@@ -1,10 +1,19 @@
 "use client";
 
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/shared/Container";
 import { values } from "@/lib/data/about-content";
 import { EASE_HERO } from "@/lib/animations";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { AboutValuesFallback } from "@/components/three/scenes/AboutValuesFallback";
+
+const AboutValuesScene = dynamic(
+  () => import("@/components/three/scenes/AboutValuesScene"),
+  {
+    ssr: false,
+    loading: () => null,
+  },
+);
 
 export function WhatWeBelieve() {
   return (
@@ -12,7 +21,7 @@ export function WhatWeBelieve() {
       className="py-24 lg:py-40"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom, oklch(0.62 0.22 285 / 0.03), transparent 15%, transparent 85%, oklch(0.62 0.22 285 / 0.03))",
+          "linear-gradient(to bottom, oklch(0.92 0.19 103 / 0.04), transparent 15%, transparent 85%, oklch(0.92 0.19 103 / 0.04))",
       }}
     >
       <Container>
@@ -50,12 +59,13 @@ interface ValueRowProps {
 }
 
 function ValueRow({ value }: ValueRowProps) {
-  const reduced = useReducedMotion();
-
   return (
     <article className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
-      <div className="lg:col-span-3">
-        <StrokeNumeral number={value.number} reduced={reduced} />
+      <div className="relative h-40 lg:col-span-3 lg:h-44">
+        <AboutValuesFallback number={value.number} />
+        <div className="pointer-events-none absolute inset-0">
+          <AboutValuesScene number={value.number} />
+        </div>
       </div>
       <div className="lg:col-span-9">
         <motion.h3
@@ -79,40 +89,5 @@ function ValueRow({ value }: ValueRowProps) {
         </motion.p>
       </div>
     </article>
-  );
-}
-
-interface StrokeNumeralProps {
-  number: string;
-  reduced: boolean;
-}
-
-function StrokeNumeral({ number, reduced }: StrokeNumeralProps) {
-  return (
-    <svg
-      viewBox="0 0 180 140"
-      className="h-auto w-32 md:w-40"
-      aria-hidden
-    >
-      <motion.text
-        x="0"
-        y="115"
-        fontFamily='"Satoshi", "Inter", sans-serif'
-        fontSize="140"
-        fontWeight="600"
-        letterSpacing="-6"
-        fill="transparent"
-        stroke="oklch(0.62 0.22 285)"
-        strokeWidth="1.25"
-        pathLength={1}
-        strokeDasharray={1}
-        initial={{ strokeDashoffset: reduced ? 0 : 1 }}
-        whileInView={{ strokeDashoffset: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 1.2, ease: EASE_HERO }}
-      >
-        {number}
-      </motion.text>
-    </svg>
   );
 }

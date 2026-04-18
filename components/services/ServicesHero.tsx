@@ -1,9 +1,16 @@
 "use client";
 
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/shared/Container";
 import { Em } from "@/components/shared/ItalicEmphasis";
+import { ServicesAmbientFallback } from "@/components/three/scenes/ServicesAmbientFallback";
 import { EASE_HERO } from "@/lib/animations";
+
+const ServicesAmbientScene = dynamic(
+  () => import("@/components/three/scenes/ServicesAmbientScene"),
+  { ssr: false, loading: () => <ServicesAmbientFallback /> },
+);
 
 const container = {
   hidden: { opacity: 0 },
@@ -25,7 +32,13 @@ const item = {
 
 export function ServicesHero() {
   return (
-    <section className="pt-28 pb-20 lg:pt-40 lg:pb-32">
+    <section className="relative overflow-hidden pt-28 pb-20 lg:pt-40 lg:pb-32">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-80"
+      >
+        <ServicesAmbientScene />
+      </div>
       <Container>
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p

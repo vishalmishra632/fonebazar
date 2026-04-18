@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/shared/Container";
+import { StoreMachinesFallback } from "@/components/three/scenes/StoreMachinesFallback";
 import { EASE_HERO } from "@/lib/animations";
+
+const StoreMachinesScene = dynamic(
+  () => import("@/components/three/scenes/StoreMachinesScene"),
+  { ssr: false, loading: () => <StoreMachinesFallback /> },
+);
 
 const container = {
   hidden: { opacity: 0 },
@@ -24,7 +31,13 @@ const item = {
 
 export function StoreHero() {
   return (
-    <section className="pt-28 pb-12 lg:pt-40 lg:pb-16">
+    <section className="relative overflow-hidden pt-28 pb-12 lg:pt-40 lg:pb-16">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-70"
+      >
+        <StoreMachinesScene />
+      </div>
       <Container>
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p
@@ -37,11 +50,7 @@ export function StoreHero() {
             variants={item}
             className="mt-8 font-display font-semibold leading-[0.9] tracking-[-0.04em] text-foreground"
           >
-            <span
-              className="block text-[clamp(3rem,13vw,12rem)]"
-            >
-              A look
-            </span>
+            <span className="block text-[clamp(3rem,13vw,12rem)]">A look</span>
             <span className="block text-[clamp(2rem,7vw,6rem)] font-semibold text-muted-foreground">
               inside
             </span>
