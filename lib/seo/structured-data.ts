@@ -1,6 +1,7 @@
 import { siteConfig } from "../data/site";
 import { homeFaqs } from "../data/services-content";
 import { servicesFaqs } from "../data/services-detail";
+import { contactFaqs } from "../data/contact-content";
 
 export function generateWebSiteSchema() {
   return {
@@ -135,6 +136,50 @@ export const aboutJsonLd = {
     telephone: "+1-705-971-0676",
     email: siteConfig.contact.email,
   },
+};
+
+export const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact fonebazar",
+  url: `${siteConfig.url}/contact`,
+  mainEntity: {
+    "@type": "LocalBusiness",
+    "@id": `${siteConfig.url}/#business`,
+    name: siteConfig.name,
+    telephone: "+1-705-971-0676",
+    email: siteConfig.contact.email,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Sault Ste. Marie",
+      addressRegion: "ON",
+      addressCountry: "CA",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "10:00",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "11:00",
+        closes: "17:00",
+      },
+    ],
+  },
+};
+
+export const contactFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: contactFaqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
 };
 
 export function escapeJsonLd(data: unknown): string {
