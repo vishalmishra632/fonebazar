@@ -12,7 +12,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CartDrawer } from "@/components/cart/CartDrawer";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/lib/data/site";
 import { buildWhatsAppOrderURL } from "@/lib/whatsapp";
@@ -50,7 +49,7 @@ export function Navbar() {
       initial={false}
       animate={{ paddingTop: isScrolled ? 8 : 16, paddingBottom: isScrolled ? 8 : 16 }}
       transition={{ type: "spring", stiffness: 260, damping: 30 }}
-      className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/70 backdrop-blur-xl"
+      className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur"
     >
       <Container className="flex items-center justify-between gap-8">
         <Link
@@ -162,12 +161,11 @@ export function Navbar() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition hover:brightness-110 md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition hover:bg-brand-strong md:inline-flex"
           >
             <MessageCircle className="h-4 w-4" />
             Chat
           </a>
-          <ThemeToggle />
           <CartDrawer />
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger

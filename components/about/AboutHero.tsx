@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Container } from "@/components/shared/Container";
+import { Em } from "@/components/shared/ItalicEmphasis";
 import { EASE_HERO } from "@/lib/animations";
 
 const container = {
@@ -26,22 +27,24 @@ export function AboutHero() {
   return (
     <section className="pt-28 pb-16 lg:pt-40 lg:pb-24">
       <Container>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="mx-auto flex max-w-5xl flex-col items-center text-center"
-        >
-          <motion.p
-            variants={item}
-            className="text-xs font-medium uppercase tracking-[0.22em] text-brand"
-          >
-            About
-          </motion.p>
+        <motion.div variants={container} initial="hidden" animate="show">
+          <div className="flex items-start justify-between gap-4">
+            <motion.p
+              variants={item}
+              className="text-[11px] font-medium uppercase tracking-[0.28em] text-brand"
+            >
+              About
+            </motion.p>
+            <motion.span
+              variants={item}
+              className="hidden font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:block"
+            >
+              Est. 2022 · Sault Ste. Marie
+            </motion.span>
+          </div>
           <motion.h1
             variants={item}
-            className="mt-6 font-display font-semibold leading-[1.02] tracking-[-0.03em]"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
+            className="text-hero mt-10 max-w-[18ch] text-foreground lg:ml-auto lg:text-right"
           >
             <motion.span
               aria-hidden
@@ -52,9 +55,9 @@ export function AboutHero() {
                 duration: 0.5,
                 ease: [0.34, 1.56, 0.64, 1],
               }}
-              className="mb-4 inline-block h-2 w-2 rounded-full bg-brand"
+              className="mb-5 inline-block h-2.5 w-2.5 rounded-full bg-brand align-middle lg:hidden"
             />
-            <span className="block">Small studio, five machines, one standard.</span>
+            Small studio, five machines, <Em>one standard.</Em>
           </motion.h1>
         </motion.div>
       </Container>

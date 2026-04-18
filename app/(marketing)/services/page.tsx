@@ -6,6 +6,7 @@ import { ServicesHero } from "@/components/services/ServicesHero";
 import { ServicesIntro } from "@/components/services/ServicesIntro";
 import { StudioSection } from "@/components/services/StudioSection";
 import { FullBleedCTA } from "@/components/shared/FullBleedCTA";
+import { KineticBand } from "@/components/shared/KineticBand";
 import { servicesDetail } from "@/lib/data/services-detail";
 import { getProductsByService } from "@/lib/data/products";
 import {
@@ -53,6 +54,11 @@ export default function ServicesPage() {
         />
       ))}
       <StudioSection />
+      <KineticBand
+        words={["Craft", "Precision", "Local", "On-Time", "Honest"]}
+        direction="left"
+        variant="outline"
+      />
       <ProcessDeepDive />
       <ServicesFAQ />
       <FullBleedCTA

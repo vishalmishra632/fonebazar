@@ -3,6 +3,9 @@ import { SmoothScrollProvider } from "@/components/animations/SmoothScrollProvid
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { FlyToCartOverlay } from "@/components/products/FlyToCartOverlay";
+import { BackToTop } from "@/components/shared/BackToTop";
+import { Cursor } from "@/components/shared/Cursor";
+import { GrainOverlay } from "@/components/shared/GrainOverlay";
 import { bodyFont } from "@/lib/fonts";
 import { siteConfig } from "@/lib/data/site";
 import "./globals.css";
@@ -44,10 +47,16 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          forcedTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <SmoothScrollProvider>
+            {children}
+            <BackToTop />
+          </SmoothScrollProvider>
+          <GrainOverlay />
+          <Cursor />
           <FlyToCartOverlay />
           <Toaster position="bottom-right" />
         </ThemeProvider>

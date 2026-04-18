@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Container } from "@/components/shared/Container";
+import { Em } from "@/components/shared/ItalicEmphasis";
 import { EASE_HERO } from "@/lib/animations";
 
 const container = {
@@ -26,32 +27,27 @@ export function ServicesHero() {
   return (
     <section className="pt-28 pb-20 lg:pt-40 lg:pb-32">
       <Container>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col items-center text-center"
-        >
+        <motion.div variants={container} initial="hidden" animate="show">
           <motion.p
             variants={item}
-            className="text-xs font-medium uppercase tracking-[0.22em] text-brand"
+            className="text-[11px] font-medium uppercase tracking-[0.28em] text-brand"
           >
             Our craft
           </motion.p>
           <motion.h1
             variants={item}
-            className="mt-5 max-w-4xl font-display text-5xl font-semibold leading-[0.95] tracking-[-0.02em] md:text-6xl lg:text-[7rem]"
+            className="text-hero mt-8 text-foreground"
           >
-            Five crafts. One studio.
+            Five crafts. <Em>One studio.</Em>
           </motion.h1>
           <motion.span
             aria-hidden
             variants={item}
-            className="mt-7 block h-[2px] w-16 bg-gradient-to-r from-transparent via-brand to-transparent"
+            className="mt-10 block h-[2px] w-24 bg-gradient-to-r from-transparent via-brand to-transparent"
           />
           <motion.p
             variants={item}
-            className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl"
+            className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl lg:ml-[25%]"
           >
             We run an actual workshop in Sault Ste. Marie — printers humming, lasers
             cutting, resin curing. Here&apos;s what happens behind the door.

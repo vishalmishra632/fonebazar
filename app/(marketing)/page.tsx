@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
-import { TrustMarquee } from "@/components/home/TrustMarquee";
 import { ServicesShowcase } from "@/components/home/ServicesShowcase";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
@@ -8,11 +7,31 @@ import { StatsStrip } from "@/components/home/StatsStrip";
 import { Testimonials } from "@/components/home/Testimonials";
 import { HomeFAQ } from "@/components/home/HomeFAQ";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { KineticBand } from "@/components/shared/KineticBand";
 import {
   escapeJsonLd,
   homeFaqJsonLd,
   homeJsonLd,
 } from "@/lib/seo/structured-data";
+
+const TRUST_WORDS = [
+  "3D Printing",
+  "Laser Engraving",
+  "Resin Art",
+  "Custom Tees",
+  "Precision Decals",
+  "Prototypes",
+  "Signage",
+  "Gifting",
+];
+
+const STUDIO_WORDS = [
+  "Hand-Made",
+  "Sault Ste. Marie",
+  "Pickup Ready",
+  "Small Batch",
+  "WhatsApp-First",
+];
 
 export const metadata: Metadata = {
   title: {
@@ -44,8 +63,9 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(homeFaqJsonLd) }}
       />
       <HeroSection />
-      <TrustMarquee />
+      <KineticBand words={TRUST_WORDS} direction="left" variant="outline" />
       <ServicesShowcase />
+      <KineticBand words={STUDIO_WORDS} direction="right" variant="fill" />
       <ProcessSection />
       <FeaturedWork />
       <StatsStrip />

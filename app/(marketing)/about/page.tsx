@@ -6,6 +6,7 @@ import { Manifesto } from "@/components/about/Manifesto";
 import { OriginStory } from "@/components/about/OriginStory";
 import { WhatWeBelieve } from "@/components/about/WhatWeBelieve";
 import { WhoWeServe } from "@/components/about/WhoWeServe";
+import { KineticBand } from "@/components/shared/KineticBand";
 import { aboutJsonLd, escapeJsonLd } from "@/lib/seo/structured-data";
 
 export const metadata: Metadata = {
@@ -35,6 +36,11 @@ export default function AboutPage() {
       <Manifesto />
       <OriginStory />
       <WhatWeBelieve />
+      <KineticBand
+        words={["Nothing Subcontracted", "Honest Timelines", "Local First", "By Hand"]}
+        direction="right"
+        variant="fill"
+      />
       <InsideTheStudio />
       <WhoWeServe />
       <ContactCard />

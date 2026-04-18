@@ -5,6 +5,7 @@ import { StoreHero } from "@/components/store/StoreHero";
 import { StudioGallery } from "@/components/store/StudioGallery";
 import { VisitingHours } from "@/components/store/VisitingHours";
 import { WhenYouVisit } from "@/components/store/WhenYouVisit";
+import { KineticBand } from "@/components/shared/KineticBand";
 import { escapeJsonLd, storeJsonLd } from "@/lib/seo/structured-data";
 
 export const metadata: Metadata = {
@@ -34,6 +35,11 @@ export default function OurStorePage() {
       <StudioGallery />
       <MachineLineup />
       <NoteFromSpace />
+      <KineticBand
+        words={["Open By Appointment", "Working Studio", "Machines Running", "Kettle On"]}
+        direction="left"
+        variant="outline"
+      />
       <WhenYouVisit />
       <VisitingHours />
     </>

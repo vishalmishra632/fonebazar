@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Container } from "@/components/shared/Container";
+import { Em } from "@/components/shared/ItalicEmphasis";
 import { EASE_HERO } from "@/lib/animations";
 
 const container = {
@@ -24,30 +25,24 @@ const item = {
 
 export function ContactHero() {
   return (
-    <section className="pt-28 pb-16 lg:pt-40 lg:pb-20">
+    <section className="pt-28 pb-12 lg:pt-40 lg:pb-16">
       <Container>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="mx-auto flex max-w-4xl flex-col items-center text-center"
-        >
+        <motion.div variants={container} initial="hidden" animate="show">
           <motion.p
             variants={item}
-            className="text-xs font-medium uppercase tracking-[0.22em] text-brand"
+            className="text-[11px] font-medium uppercase tracking-[0.28em] text-brand"
           >
             Contact
           </motion.p>
           <motion.h1
             variants={item}
-            className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-            style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}
+            className="text-hero mt-8 max-w-[14ch] text-foreground"
           >
-            Let&apos;s make something together.
+            Let&apos;s make <Em>something</Em> together.
           </motion.h1>
           <motion.p
             variants={item}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+            className="mt-10 max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
             Send us a message below, or jump straight to WhatsApp — whichever&apos;s
             easier. We reply within the hour during studio hours.
