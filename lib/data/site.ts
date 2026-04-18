@@ -22,13 +22,33 @@ export const siteConfig = {
     facebook: "",
   },
   services: [
-    { slug: "3d-printing", name: "3D Printing" },
-    { slug: "laser-engraving", name: "Laser Engraving" },
-    { slug: "resin-art", name: "Resin Art" },
-    { slug: "t-shirt-printing", name: "T-Shirt Printing" },
-    { slug: "decal-printing", name: "Decal Printing" },
+    {
+      slug: "3d-printing",
+      name: "3D Printing",
+      blurb: "FDM + resin, from one-offs to runs.",
+    },
+    {
+      slug: "laser-engraving",
+      name: "Laser Engraving",
+      blurb: "Wood, acrylic, leather, metal.",
+    },
+    {
+      slug: "resin-art",
+      name: "Resin Art",
+      blurb: "Hand-poured, one-of-one pieces.",
+    },
+    {
+      slug: "t-shirt-printing",
+      name: "T-Shirt Printing",
+      blurb: "DTG + vinyl, singles to bulk.",
+    },
+    {
+      slug: "decal-printing",
+      name: "Decal Printing",
+      blurb: "Die-cut vinyl for any surface.",
+    },
   ],
 } as const;
 
 export type SiteConfig = typeof siteConfig;
-export type ServiceSlug = (typeof siteConfig.services)[number]["slug"];
+export type SiteServiceSlug = (typeof siteConfig.services)[number]["slug"];

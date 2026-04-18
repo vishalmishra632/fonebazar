@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { MessageCircle, Menu, X } from "lucide-react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
+import { ChevronDown, MessageCircle, Menu, X } from "lucide-react";
 import { useState } from "react";
 import {
   Sheet,
@@ -20,8 +20,7 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/products", label: "Products" },
+  { href: "/products", label: "Products", hasSubmenu: true },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -31,12 +30,18 @@ export function Navbar() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 60);
   });
 
   const whatsappHref = buildWhatsAppOrderURL([]);
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
 
   return (
     <motion.header
@@ -48,7 +53,7 @@ export function Navbar() {
       <Container className="flex items-center justify-between gap-8">
         <Link
           href="/"
-          className="group flex items-baseline gap-1 font-display text-lg font-semibold tracking-tight lowercase"
+          className="group flex items-baseline gap-1 font-display text-lg font-semibold lowercase tracking-tight"
         >
           fonebazar
           <span
@@ -59,19 +64,87 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-8 text-sm lg:flex">
           {NAV_LINKS.map((link) => {
-            const isActive =
-              link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            const active = isActive(link.href);
+            if (link.hasSubmenu) {
+              return (
+                <div
+                  key={link.href}
+                  onMouseEnter={() => setProductsOpen(true)}
+                  onMouseLeave={() => setProductsOpen(false)}
+                  className="relative py-1"
+                >
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "flex items-center gap-1 transition-colors",
+                      active
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    {link.label}
+                    <ChevronDown className="h-3.5 w-3.5" />
+                    {active ? (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute inset-x-0 -bottom-0.5 h-px bg-brand"
+                      />
+                    ) : null}
+                  </Link>
+                  <AnimatePresence>
+                    {productsOpen ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.18 }}
+                        className="absolute left-1/2 top-full -translate-x-1/2 pt-3"
+                      >
+                        <div className="min-w-[260px] rounded-2xl border border-border/60 bg-background/95 p-2 shadow-xl backdrop-blur">
+                          <Link
+                            href="/products"
+                            onClick={() => setProductsOpen(false)}
+                            className="block rounded-xl px-3 py-2 text-sm text-foreground hover:bg-surface-2"
+                          >
+                            All products
+                            <span className="ml-1 text-xs text-muted-foreground">
+                              — full catalog
+                            </span>
+                          </Link>
+                          <div className="my-1 h-px bg-border/50" />
+                          {siteConfig.services.map((service) => (
+                            <Link
+                              key={service.slug}
+                              href={`/products/${service.slug}`}
+                              onClick={() => setProductsOpen(false)}
+                              className="block rounded-xl px-3 py-2 text-sm text-muted-foreground transition hover:bg-surface-2 hover:text-foreground"
+                            >
+                              {service.name}
+                              <span className="ml-1 text-xs text-muted-foreground/70">
+                                — {service.blurb}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
+              );
+            }
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
                   "relative py-1 transition-colors",
-                  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                  active
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {link.label}
-                {isActive ? (
+                {active ? (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute inset-x-0 -bottom-0.5 h-px bg-brand"
@@ -87,7 +160,7 @@ export function Navbar() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition hover:brightness-110 md:inline-flex"
           >
             <MessageCircle className="h-4 w-4" />
             Chat
@@ -121,7 +194,7 @@ export function Navbar() {
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              <nav className="mt-12 flex flex-col gap-4 px-6 font-display text-3xl">
+              <nav className="mt-10 flex flex-col gap-3 px-6 font-display text-3xl">
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.href}
@@ -133,6 +206,24 @@ export function Navbar() {
                   </Link>
                 ))}
               </nav>
+              <div className="mt-6 px-6">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Services
+                </p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {siteConfig.services.map((service) => (
+                    <li key={service.slug}>
+                      <Link
+                        href={`/products/${service.slug}`}
+                        onClick={() => setSheetOpen(false)}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        {service.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className="mt-auto px-6 pb-8 pt-12">
                 <a
                   href={whatsappHref}

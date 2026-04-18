@@ -1,22 +1,506 @@
-import type { ServiceSlug } from "./site";
+import type { Product } from "@/lib/types/product";
 
-export interface Product {
-  id: string;
-  name: string;
-  service: ServiceSlug;
-  price?: number;
-  image?: string;
-  description?: string;
-  tags?: string[];
-  isFeatured?: boolean;
+// placeholder — replace in Phase 9
+const PH = (id: string) => `https://images.unsplash.com/photo-${id}?w=1200&q=80`;
+
+export const products: Product[] = [
+  {
+    id: "3dp-001",
+    slug: "lattice-table-lamp",
+    name: "Lattice Table Lamp",
+    service: "3d-printing",
+    shortDescription: "Geometric lattice shade in PLA, warm-light ready.",
+    description: [
+      "A 240mm tall lattice-shade table lamp designed in-house and printed in your choice of matte PLA. The open geometry casts a soft honeycomb shadow on walls — beautiful as a nightstand piece or on a console.",
+      "Ships with a standard E26 lamp base and 3m cord. Bulb not included — we recommend a 40W warm LED for the right glow.",
+    ],
+    price: 85,
+    images: [PH("1581091870622-1e7e3fbfac08"), PH("1565814329452-e1efa11c5b89")],
+    options: [
+      {
+        key: "colour",
+        label: "Colour",
+        type: "select",
+        values: ["Matte White", "Charcoal", "Sand", "Deep Violet"],
+        default: "Matte White",
+        required: true,
+      },
+      { key: "notes", label: "Notes for the studio", type: "text", placeholder: "Any custom tweaks?" },
+    ],
+    tags: ["PLA", "Home Decor", "Made to Order"],
+    whatsIncluded: ["Lamp shade (3D printed PLA)", "E26 base + 3m cord", "Care card"],
+    leadTime: "4–6 days",
+    isFeatured: true,
+  },
+  {
+    id: "3dp-002",
+    slug: "articulated-phone-stand",
+    name: "Articulated Phone Stand",
+    service: "3d-printing",
+    shortDescription: "Print-in-place folding stand — no assembly needed.",
+    description: [
+      "A compact folding phone stand printed in one shot with living hinges. Folds flat for travel, opens to hold any phone in portrait or landscape.",
+      "Grippy base with TPU-style corner stoppers so it stays put on glass desks.",
+    ],
+    price: 25,
+    images: [PH("1512428559087-560fa5ceab42")],
+    options: [
+      {
+        key: "colour",
+        label: "Colour",
+        type: "select",
+        values: ["Black", "Sand", "Lime", "Violet"],
+        required: true,
+      },
+    ],
+    tags: ["PLA", "Desk", "Travel Friendly"],
+    leadTime: "2–3 days",
+  },
+  {
+    id: "3dp-003",
+    slug: "custom-miniature-from-photo",
+    name: "Custom Miniature from Photo",
+    service: "3d-printing",
+    shortDescription: "Send a photo, get a resin figurine. 60–120mm tall.",
+    description: [
+      "High-detail resin SLA print from a photo you send on WhatsApp. We sculpt, approve with you over a preview render, then print at 60mm, 90mm, or 120mm.",
+      "Comes hand-finished with optional base engraving. Ideal for gifts, trophies, memorial pieces.",
+    ],
+    price: "quote",
+    priceNote: "from $120",
+    images: [PH("1578662996442-48f60103fc96")],
+    options: [
+      { key: "height", label: "Height", type: "select", values: ["60mm", "90mm", "120mm"], required: true },
+      {
+        key: "finish",
+        label: "Finish",
+        type: "select",
+        values: ["Matte Grey (paintable)", "Hand-Painted"],
+        required: true,
+      },
+      { key: "engrave", label: "Base engraving", type: "text", placeholder: "Name or date?" },
+    ],
+    tags: ["SLA Resin", "Custom", "Gifting"],
+    leadTime: "10–14 days",
+    isFeatured: true,
+  },
+  {
+    id: "3dp-004",
+    slug: "replacement-knob-set",
+    name: "Replacement Knob Set (x4)",
+    service: "3d-printing",
+    shortDescription: "Appliance or furniture knobs copied from your sample.",
+    description: [
+      "Broke a knob? Send us the original (or a photo with dimensions). We reverse-engineer and print a matching set of four in durable PETG.",
+      "Threaded inserts available on request.",
+    ],
+    price: 15,
+    images: [PH("1558618666-fcd25c85cd64")],
+    tags: ["PETG", "Repair", "Reverse Engineering"],
+    leadTime: "3–5 days",
+  },
+  {
+    id: "3dp-005",
+    slug: "articulated-desk-dragon",
+    name: "Articulated Desk Dragon",
+    service: "3d-printing",
+    shortDescription: "Print-in-place dragon — 24 joints, fully poseable.",
+    description: [
+      "A 240mm-long fully articulated dragon printed in one piece. 24 joints flex independently — perfect fidget piece or desk character.",
+      "Available in solid colour or dual-colour spine gradient.",
+    ],
+    price: 40,
+    images: [PH("1611605698323-b1e99cfd37ea")],
+    options: [
+      {
+        key: "colour",
+        label: "Colour",
+        type: "select",
+        values: ["Violet", "Forest Green", "Charcoal", "Dual: Violet→Lime"],
+        required: true,
+      },
+    ],
+    tags: ["PLA", "Desk", "Articulated"],
+    leadTime: "3–5 days",
+  },
+  {
+    id: "lsr-001",
+    slug: "oak-coaster-set",
+    name: "Oak Coaster Set (4)",
+    service: "laser-engraving",
+    shortDescription: "Solid oak rounds engraved with your design or monogram.",
+    description: [
+      "A set of four 100mm solid oak coasters, laser-engraved with your chosen design, monogram, or quote. Sealed with food-safe beeswax finish.",
+      "Great as a housewarming gift. Send art on WhatsApp or pick one of our studio designs.",
+    ],
+    price: 40,
+    images: [PH("1565717106-17ad97d9c0eb")],
+    options: [
+      {
+        key: "design",
+        label: "Design source",
+        type: "select",
+        values: [
+          "Studio design",
+          "My own art (send on WhatsApp)",
+          "Monogram (I'll provide initials)",
+        ],
+        required: true,
+      },
+      { key: "monogram", label: "Monogram initials", type: "text", placeholder: "e.g., A.K." },
+    ],
+    tags: ["Solid Oak", "Gifting", "Food-Safe Finish"],
+    whatsIncluded: ["4 engraved oak coasters", "Jute twine wrap", "Care card"],
+    leadTime: "3–5 days",
+    isFeatured: true,
+  },
+  {
+    id: "lsr-002",
+    slug: "personalised-cutting-board",
+    name: "Personalised Cutting Board",
+    service: "laser-engraving",
+    shortDescription: "Maple or walnut board with custom engraving.",
+    description: [
+      'A premium hardwood cutting board (14"×9"×0.75") with engraving on one face. Maple for a lighter contrast, walnut for a richer one.',
+      "Finished with food-safe mineral oil blend. Hand-wash only.",
+    ],
+    price: 60,
+    images: [PH("1594736797933-d0501ba2fe65")],
+    options: [
+      { key: "wood", label: "Wood", type: "select", values: ["Maple", "Walnut"], required: true },
+      {
+        key: "engrave",
+        label: "Engraving text",
+        type: "text",
+        placeholder: "Name, date, quote…",
+        required: true,
+      },
+    ],
+    tags: ["Hardwood", "Kitchen", "Wedding Gift"],
+    leadTime: "4–6 days",
+  },
+  {
+    id: "lsr-003",
+    slug: "acrylic-desk-nameplate",
+    name: "Acrylic Desk Nameplate",
+    service: "laser-engraving",
+    shortDescription: "Clear or frosted acrylic with backlit-ready engraving.",
+    description: [
+      "A 200mm × 60mm desk nameplate in 8mm acrylic. Clear for a floating look, frosted for a softer glow with a light bar behind.",
+      "Stand included.",
+    ],
+    price: 35,
+    images: [PH("1586953208448-b95a79798f07")],
+    options: [
+      { key: "finish", label: "Finish", type: "select", values: ["Clear", "Frosted"], required: true },
+      { key: "line1", label: "Line 1 (name)", type: "text", required: true },
+      { key: "line2", label: "Line 2 (title, optional)", type: "text" },
+    ],
+    tags: ["Acrylic", "Office", "Corporate Gifting"],
+    leadTime: "3–5 days",
+  },
+  {
+    id: "lsr-004",
+    slug: "leather-keychain-set",
+    name: "Leather Keychain Set (x5)",
+    service: "laser-engraving",
+    shortDescription: "Full-grain leather tags, engraved with names or initials.",
+    description: [
+      "Five full-grain leather keychain tags, each engraved with a different name or initial. Brass D-ring and split ring included.",
+      "Perfect for family key organisation or small-team gifting.",
+    ],
+    price: 25,
+    images: [PH("1603400521630-9f2de124b33b")],
+    options: [
+      {
+        key: "colour",
+        label: "Leather colour",
+        type: "select",
+        values: ["Natural Tan", "Dark Brown", "Black"],
+        required: true,
+      },
+      {
+        key: "names",
+        label: "Names/initials (5, comma-separated)",
+        type: "text",
+        required: true,
+      },
+    ],
+    tags: ["Full-Grain Leather", "Family", "Gifting"],
+    leadTime: "3–5 days",
+  },
+  {
+    id: "rsn-001",
+    slug: "ocean-flow-wall-piece",
+    name: "Ocean Flow Wall Piece",
+    service: "resin-art",
+    shortDescription: 'Hand-poured epoxy seascape on birch, 24" × 18".',
+    description: [
+      'A large 24" × 18" wall piece on birch panel, hand-poured in layers of teal, white, and pearl resin. Each piece is unique — yours will look similar but never identical to the reference.',
+      "Ready to hang. D-ring hardware installed.",
+    ],
+    price: 120,
+    images: [PH("1578320340584-aec62ea79a3a")],
+    options: [
+      {
+        key: "palette",
+        label: "Colour palette",
+        type: "select",
+        values: ["Ocean Teal", "Sunset Gold", "Forest Green", "Violet Nebula"],
+        required: true,
+      },
+    ],
+    tags: ["Epoxy Resin", "Wall Art", "Hand-Poured", "One of One"],
+    leadTime: "7–10 days",
+    isFeatured: true,
+  },
+  {
+    id: "rsn-002",
+    slug: "agate-style-coaster-set",
+    name: "Agate-Style Coaster Set (4)",
+    service: "resin-art",
+    shortDescription: "Faux-agate resin coasters with gold-leaf edging.",
+    description: [
+      "Set of four 100mm round resin coasters with an agate-slice aesthetic. Each is finished with a hand-applied gold-leaf edge.",
+      "Cork backing to protect your surfaces.",
+    ],
+    price: 55,
+    images: [PH("1595526114035-0d45ed16cfbf")],
+    options: [
+      {
+        key: "palette",
+        label: "Palette",
+        type: "select",
+        values: ["Rose Quartz", "Ocean Blue", "Amethyst", "Emerald"],
+        required: true,
+      },
+    ],
+    tags: ["Epoxy Resin", "Gold Leaf", "Gifting"],
+    leadTime: "5–7 days",
+  },
+  {
+    id: "rsn-003",
+    slug: "resin-jewellery-tray",
+    name: "Resin Jewellery Tray",
+    service: "resin-art",
+    shortDescription: "Hexagonal catch-all with embedded dried florals.",
+    description: [
+      "A 140mm hexagonal jewellery tray with real dried florals suspended in clear resin. Makes a striking dresser or entryway piece.",
+    ],
+    price: 45,
+    images: [PH("1617038220319-276d3cfab638")],
+    options: [
+      {
+        key: "floral",
+        label: "Florals",
+        type: "select",
+        values: ["Wildflower Mix", "Rose Petals", "Lavender", "Forest Greens"],
+        required: true,
+      },
+    ],
+    tags: ["Epoxy Resin", "Botanical", "Home Decor"],
+    leadTime: "5–7 days",
+  },
+  {
+    id: "rsn-004",
+    slug: "custom-memorial-keepsake",
+    name: "Custom Memorial Keepsake",
+    service: "resin-art",
+    shortDescription: "Preserve petals, ashes, or mementos in clear resin.",
+    description: [
+      "A thoughtful custom piece — we embed your provided flowers, locket contents, or small mementos in a clear resin block or pendant.",
+      "We handle your items with care and return any unused material.",
+    ],
+    price: "quote",
+    priceNote: "from $90",
+    images: [PH("1615529162924-f8605109d34a")],
+    options: [
+      {
+        key: "form",
+        label: "Form",
+        type: "select",
+        values: ["Block (80mm cube)", "Paperweight (hemisphere)", "Pendant"],
+        required: true,
+      },
+      { key: "notes", label: "Tell us what you're preserving", type: "text", required: true },
+    ],
+    tags: ["Epoxy Resin", "Memorial", "Bespoke"],
+    leadTime: "14–21 days",
+  },
+  {
+    id: "tsh-001",
+    slug: "custom-tee-single",
+    name: "Custom Tee (Single)",
+    service: "t-shirt-printing",
+    shortDescription: "Premium blank + your design, DTG or vinyl.",
+    description: [
+      "A single premium cotton tee printed with your design. Choose DTG for photographic detail or vinyl for bold solid colours with a long wash life.",
+      "Send art on WhatsApp — vector preferred, 300dpi raster acceptable.",
+    ],
+    price: 30,
+    images: [PH("1503342217505-b0a15ec3261c")],
+    options: [
+      { key: "size", label: "Size", type: "select", values: ["S", "M", "L", "XL", "XXL"], required: true },
+      {
+        key: "colour",
+        label: "Tee colour",
+        type: "select",
+        values: ["White", "Black", "Heather Grey", "Navy"],
+        required: true,
+      },
+      {
+        key: "method",
+        label: "Print method",
+        type: "select",
+        values: ["DTG (photo detail)", "Vinyl (solid colour)"],
+        required: true,
+      },
+    ],
+    tags: ["Ring-Spun Cotton", "DTG or Vinyl"],
+    leadTime: "3–5 days",
+  },
+  {
+    id: "tsh-002",
+    slug: "team-kit-bulk",
+    name: "Team Kit (Min. 10)",
+    service: "t-shirt-printing",
+    shortDescription: "Matching tees for teams, events, or small brands.",
+    description: [
+      "Bulk tees for teams, events, or merch drops. Minimum 10 pieces. Per-unit price drops with volume — WhatsApp for a quote.",
+      "Front + back print, numbering, and name runs available.",
+    ],
+    price: "quote",
+    priceNote: "from $22/unit at 10+",
+    images: [PH("1618932260643-eee4a2f652a6")],
+    tags: ["Bulk", "Team", "Events"],
+    leadTime: "7–10 days",
+    isFeatured: true,
+  },
+  {
+    id: "tsh-003",
+    slug: "event-merch-hoodie",
+    name: "Event Merch Hoodie",
+    service: "t-shirt-printing",
+    shortDescription: "Heavyweight hoodie with front chest + back print.",
+    description: [
+      "A 380gsm premium hoodie with your design printed on the front chest and back. Warm, structured, and built to last.",
+    ],
+    price: 55,
+    images: [PH("1556821840-3a9fbc86339e")],
+    options: [
+      { key: "size", label: "Size", type: "select", values: ["S", "M", "L", "XL", "XXL"], required: true },
+      {
+        key: "colour",
+        label: "Hoodie colour",
+        type: "select",
+        values: ["Black", "Charcoal", "Cream"],
+        required: true,
+      },
+    ],
+    tags: ["Heavyweight", "Winter", "Events"],
+    leadTime: "5–7 days",
+  },
+  {
+    id: "dcl-001",
+    slug: "car-decal-pack",
+    name: "Car Decal Pack (3)",
+    service: "decal-printing",
+    shortDescription: "Three weatherproof vinyl decals for your ride.",
+    description: [
+      "A set of three die-cut weatherproof vinyl decals — your design, up to 200mm on longest side. UV-stable, fade-resistant for 5+ years outdoors.",
+    ],
+    price: 18,
+    images: [PH("1609205807490-89c0a16b5f62")],
+    options: [
+      {
+        key: "colour",
+        label: "Vinyl colour",
+        type: "select",
+        values: ["Matte Black", "Gloss White", "Chrome Silver", "Violet", "Lime"],
+        required: true,
+      },
+    ],
+    tags: ["Weatherproof", "Die-Cut", "Vinyl"],
+    leadTime: "2–3 days",
+  },
+  {
+    id: "dcl-002",
+    slug: "laptop-sticker-set",
+    name: "Laptop Sticker Set (5)",
+    service: "decal-printing",
+    shortDescription: "Five custom laptop-sized stickers, matte finish.",
+    description: [
+      "Five 60–80mm custom stickers in matte vinyl with a laminate topcoat. Scratch-resistant, won't yellow.",
+    ],
+    price: 15,
+    images: [PH("1517336714731-489689fd1ca8")],
+    tags: ["Matte Laminate", "Scratch-Resistant"],
+    leadTime: "2–3 days",
+    isFeatured: true,
+  },
+  {
+    id: "dcl-003",
+    slug: "custom-cut-vinyl",
+    name: "Custom Cut Vinyl (per sqft)",
+    service: "decal-printing",
+    shortDescription: "Large-format cut vinyl for signage and walls.",
+    description: [
+      "Large-format vinyl cut to any shape you draw. Priced per square foot. Ideal for storefront windows, wall decor, and vehicle wraps.",
+      "Minimum 1 sqft order.",
+    ],
+    price: 12,
+    priceNote: "per sqft",
+    images: [PH("1558655146-9f40138edfeb")],
+    options: [
+      {
+        key: "sqft",
+        label: "Square feet needed",
+        type: "text",
+        placeholder: "e.g., 4",
+        required: true,
+      },
+      {
+        key: "colour",
+        label: "Colour",
+        type: "select",
+        values: ["Matte Black", "Gloss White", "Brand Violet", "Gold", "Chrome"],
+        required: true,
+      },
+    ],
+    tags: ["Large Format", "Signage", "Vehicle"],
+    leadTime: "3–5 days",
+  },
+  {
+    id: "dcl-004",
+    slug: "window-graphics",
+    name: "Window Graphics",
+    service: "decal-printing",
+    shortDescription: "Storefront window vinyl with optional frosted effect.",
+    description: [
+      "Custom window graphics for storefronts, offices, and home. Choose solid-colour cut vinyl or frosted privacy vinyl with cutout logos/text.",
+    ],
+    price: "quote",
+    priceNote: "quote by size",
+    images: [PH("1556761175-5973dc0f32e7")],
+    tags: ["Frosted", "Storefront", "Privacy"],
+    leadTime: "5–7 days",
+  },
+];
+
+export function getProductsByService(service: string): Product[] {
+  return products.filter((p) => p.service === service);
 }
 
-export const products: Product[] = [];
-
-export function getProduct(id: string): Product | undefined {
-  return products.find((product) => product.id === id);
+export function getProductBySlug(service: string, slug: string): Product | undefined {
+  return products.find((p) => p.service === service && p.slug === slug);
 }
 
-export function getProductsByService(service: ServiceSlug): Product[] {
-  return products.filter((product) => product.service === service);
+export function getFeaturedProducts(): Product[] {
+  return products.filter((p) => p.isFeatured);
+}
+
+export function getRelatedProducts(product: Product, limit = 4): Product[] {
+  return products
+    .filter((p) => p.service === product.service && p.id !== product.id)
+    .slice(0, limit);
 }

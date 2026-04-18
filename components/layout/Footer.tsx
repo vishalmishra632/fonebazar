@@ -4,10 +4,9 @@ import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/lib/data/site";
 import { buildWhatsAppOrderURL } from "@/lib/whatsapp";
 
-// TODO: wire real page hrefs as phases ship
 const SERVICE_LINKS = siteConfig.services.map((service) => ({
   label: service.name,
-  href: `/services/${service.slug}`,
+  href: `/products/${service.slug}`,
 }));
 
 const COMPANY_LINKS = [

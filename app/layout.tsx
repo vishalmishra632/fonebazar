@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SmoothScrollProvider } from "@/components/animations/SmoothScrollProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { FlyToCartOverlay } from "@/components/products/FlyToCartOverlay";
 import { bodyFont } from "@/lib/fonts";
 import { siteConfig } from "@/lib/data/site";
 import "./globals.css";
@@ -47,6 +48,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <FlyToCartOverlay />
           <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>
