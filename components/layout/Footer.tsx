@@ -18,9 +18,9 @@ const COMPANY_LINKS = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms & Conditions", href: "/terms" },
-  { label: "Refund & Return", href: "/refund" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-conditions" },
+  { label: "Refund & Return", href: "/refund-return" },
 ];
 
 export function Footer() {

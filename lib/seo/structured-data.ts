@@ -2,6 +2,7 @@ import { siteConfig } from "../data/site";
 import { homeFaqs } from "../data/services-content";
 import { servicesFaqs } from "../data/services-detail";
 import { contactFaqs } from "../data/contact-content";
+import type { LegalDocument } from "../types/legal";
 
 export function generateWebSiteSchema() {
   return {
@@ -220,6 +221,27 @@ export const storeJsonLd = {
     "Decal Printing",
   ],
 };
+
+export function legalJsonLd(doc: LegalDocument) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: doc.title,
+    url: `${siteConfig.url}/${doc.slug}`,
+    description: doc.intro,
+    dateModified: doc.lastUpdated,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "LocalBusiness",
+      "@id": `${siteConfig.url}/#business`,
+      name: siteConfig.name,
+    },
+  };
+}
 
 export function escapeJsonLd(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
