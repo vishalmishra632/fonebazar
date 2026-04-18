@@ -23,6 +23,7 @@ const NAV_LINKS = [
   { href: "/services", label: "Our Services" },
   { href: "/products", label: "Products", hasSubmenu: true },
   { href: "/about", label: "About" },
+  { href: "/our-store", label: "Our Store" },
   { href: "/contact", label: "Contact" },
 ];
 

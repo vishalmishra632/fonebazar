@@ -182,6 +182,45 @@ export const contactFaqJsonLd = {
   })),
 };
 
+export const storeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteConfig.url}/#business`,
+  name: siteConfig.name,
+  description:
+    "A creative services studio in Sault Ste. Marie, offering 3D printing, laser engraving, resin art, t-shirt printing, and decal printing.",
+  url: `${siteConfig.url}/our-store`,
+  telephone: "+1-705-971-0676",
+  email: siteConfig.contact.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sault Ste. Marie",
+    addressRegion: "ON",
+    addressCountry: "CA",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "10:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "11:00",
+      closes: "17:00",
+    },
+  ],
+  availableService: [
+    "3D Printing",
+    "Laser Engraving",
+    "Resin Art",
+    "T-Shirt Printing",
+    "Decal Printing",
+  ],
+};
+
 export function escapeJsonLd(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }

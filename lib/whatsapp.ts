@@ -1,6 +1,10 @@
 import { siteConfig } from "./data/site";
 import type { CartItem } from "./cart-store";
 
+function buildWhatsAppURL(message: string): string {
+  return `https://wa.me/${siteConfig.whatsapp.number}?text=${encodeURIComponent(message)}`;
+}
+
 export function buildWhatsAppOrderURL(items: CartItem[]): string {
   const lines: string[] = [siteConfig.whatsapp.messagePrefix, ""];
 
@@ -38,5 +42,15 @@ export function buildWhatsAppOrderURL(items: CartItem[]): string {
     lines.push("Please confirm availability, final cost, and timeline. Thank you!");
   }
 
-  return `https://wa.me/${siteConfig.whatsapp.number}?text=${encodeURIComponent(lines.join("\n"))}`;
+  return buildWhatsAppURL(lines.join("\n"));
+}
+
+export function buildWhatsAppVisitURL(): string {
+  return buildWhatsAppURL(
+    "Hi fonebazar, I'd like to book a studio visit. My preferred day and time: ",
+  );
+}
+
+export function buildWhatsAppCustomURL(messageBody: string): string {
+  return buildWhatsAppURL(messageBody);
 }
