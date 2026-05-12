@@ -1,101 +1,84 @@
 "use client";
 
-import { Float, MeshDistortMaterial } from "@react-three/drei";
-import type { Texture } from "three";
+import { Float, useGLTF } from "@react-three/drei";
+import { useEffect, useMemo } from "react";
+import * as THREE from "three";
 import { SceneCanvas } from "@/components/three/SceneCanvas";
 import { MouseParallax } from "@/components/three/primitives/MouseCamera";
 import { useThemedMatcaps } from "@/hooks/use-themed-matcaps";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
-function FdmStack({ reduced, matcap }: { reduced: boolean; matcap: Texture }) {
-  return (
-    <Float speed={reduced ? 0 : 0.6} floatIntensity={reduced ? 0 : 0.3} position={[-3.6, 0.4, 0]}>
-      {[0, 1, 2].map((i) => (
-        <mesh key={i} position={[0, i * 0.1 - 0.1, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.6 - i * 0.08, 0.02, 12, 60]} />
-          <meshMatcapMaterial matcap={matcap} />
-        </mesh>
-      ))}
-    </Float>
-  );
-}
+// Ambient studio scene behind the Our Store hero. Uses the real GLB models
+// shipped in /public/models/ — a literal FDM printer, a t-shirt, and a
+// resin bottle — floating in space as if mid-air specimens from the studio.
+// Replaces the previous abstract primitives that read as random shapes.
 
-function SlaPillar({ reduced, matcap }: { reduced: boolean; matcap: Texture }) {
-  return (
-    <Float speed={reduced ? 0 : 0.55} floatIntensity={reduced ? 0 : 0.25} position={[-2, -0.3, 0.2]}>
-      <mesh>
-        <cylinderGeometry args={[0.08, 0.08, 1.4, 16]} />
-        <meshMatcapMaterial matcap={matcap} />
-      </mesh>
-      <mesh position={[0, -0.9, 0]}>
-        <cylinderGeometry args={[0.4, 0.5, 0.1, 16]} />
-        <meshMatcapMaterial matcap={matcap} transparent opacity={0.6} />
-      </mesh>
-    </Float>
-  );
-}
+const PRINTER_URL = "/models/printer.glb";
+const TSHIRT_URL = "/models/tshirt.glb";
+const RESIN_URL = "/models/resin-bottle.glb";
 
-function LaserBeam({ reduced, matcap }: { reduced: boolean; matcap: Texture }) {
-  return (
-    <Float speed={reduced ? 0 : 0.7} floatIntensity={reduced ? 0 : 0.3} position={[-0.4, 0.3, 0]}>
-      <mesh rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.04, 0.04, 1.6, 12]} />
-        <meshMatcapMaterial matcap={matcap} />
-      </mesh>
-      <mesh>
-        <boxGeometry args={[0.32, 0.32, 0.32]} />
-        <meshMatcapMaterial matcap={matcap} />
-      </mesh>
-    </Float>
-  );
-}
+useGLTF.preload(PRINTER_URL);
+useGLTF.preload(TSHIRT_URL);
+useGLTF.preload(RESIN_URL);
 
-function ResinBlob({
-  reduced,
-  mobile,
-  color,
-}: {
+interface FloatingSpecimenProps {
+  url: string;
+  position: [number, number, number];
+  scale: number;
+  yOffset?: number;
+  rotationY?: number;
   reduced: boolean;
-  mobile: boolean;
-  color: string;
-}) {
-  if (mobile) return null;
-  return (
-    <Float speed={reduced ? 0 : 0.9} floatIntensity={reduced ? 0 : 0.5} position={[1.4, -0.5, 0.5]}>
-      <mesh>
-        <sphereGeometry args={[0.6, 32, 32]} />
-        <MeshDistortMaterial
-          color={color}
-          distort={reduced ? 0.25 : 0.55}
-          speed={reduced ? 0 : 1.6}
-          roughness={0.45}
-          metalness={0.1}
-        />
-      </mesh>
-    </Float>
-  );
+  speed?: number;
+  recolor?: { body: string; sheen?: string };
 }
 
-function HeatPress({ reduced, matcap }: { reduced: boolean; matcap: Texture }) {
-  return (
-    <Float speed={reduced ? 0 : 0.5} floatIntensity={reduced ? 0 : 0.25} position={[2.6, 0.6, 0]}>
-      <mesh rotation={[0, 0.3, 0]}>
-        <boxGeometry args={[1.1, 0.08, 0.7]} />
-        <meshMatcapMaterial matcap={matcap} />
-      </mesh>
-    </Float>
-  );
-}
+function FloatingSpecimen({
+  url,
+  position,
+  scale,
+  yOffset = 0,
+  rotationY = 0,
+  reduced,
+  speed = 0.6,
+  recolor,
+}: FloatingSpecimenProps) {
+  const { scene } = useGLTF(url);
+  const cloned = useMemo(() => scene.clone(true), [scene]);
 
-function VinylRoller({ reduced, matcap, mobile }: { reduced: boolean; matcap: Texture; mobile: boolean }) {
-  if (mobile) return null;
+  useEffect(() => {
+    if (!recolor) return;
+    cloned.traverse((child) => {
+      if (!(child instanceof THREE.Mesh)) return;
+      const original = child.material as THREE.MeshStandardMaterial;
+      child.material = new THREE.MeshPhysicalMaterial({
+        color: recolor.body,
+        normalMap: original?.normalMap ?? null,
+        aoMap: original?.aoMap ?? null,
+        roughness: 0.82,
+        metalness: 0,
+        sheen: recolor.sheen ? 0.6 : 0,
+        sheenColor: recolor.sheen
+          ? new THREE.Color(recolor.sheen)
+          : new THREE.Color(0),
+        sheenRoughness: 0.85,
+      });
+    });
+  }, [cloned, recolor]);
+
   return (
-    <Float speed={reduced ? 0 : 0.65} floatIntensity={reduced ? 0 : 0.3} position={[3.6, -0.4, 0.4]}>
-      <mesh rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.16, 0.16, 1.2, 24]} />
-        <meshMatcapMaterial matcap={matcap} />
-      </mesh>
+    <Float
+      speed={reduced ? 0 : speed}
+      floatIntensity={reduced ? 0 : 0.45}
+      rotationIntensity={reduced ? 0 : 0.25}
+      position={position}
+    >
+      <primitive
+        object={cloned}
+        scale={scale}
+        position={[0, yOffset, 0]}
+        rotation={[0, rotationY, 0]}
+      />
     </Float>
   );
 }
@@ -103,16 +86,49 @@ function VinylRoller({ reduced, matcap, mobile }: { reduced: boolean; matcap: Te
 function SceneContent() {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
-  const { primary, accentA, primaryColor } = useThemedMatcaps();
+  const { isLight } = useThemedMatcaps();
+
+  const shirtRecolor = isLight
+    ? { body: "#1c1714", sheen: "#3a2f23" }
+    : { body: "#F5EBD0", sheen: "#FFF6D6" };
 
   return (
-    <MouseParallax strength={isMobile ? 0 : 0.4} disabled={isMobile || reduced}>
-      <FdmStack reduced={reduced} matcap={primary} />
-      <SlaPillar reduced={reduced} matcap={accentA} />
-      <LaserBeam reduced={reduced} matcap={primary} />
-      <ResinBlob reduced={reduced} mobile={isMobile} color={primaryColor} />
-      <HeatPress reduced={reduced} matcap={accentA} />
-      <VinylRoller reduced={reduced} matcap={primary} mobile={isMobile} />
+    <MouseParallax strength={isMobile ? 0 : 0.32} disabled={isMobile || reduced}>
+      {/* FDM printer — left side, the largest specimen */}
+      <FloatingSpecimen
+        url={PRINTER_URL}
+        position={[-3.2, 0.2, -0.4]}
+        scale={0.035}
+        yOffset={-1}
+        rotationY={0.6}
+        reduced={reduced}
+        speed={0.5}
+      />
+
+      {/* T-shirt — centre, slightly behind the headline */}
+      <FloatingSpecimen
+        url={TSHIRT_URL}
+        position={[0.4, -0.2, -1]}
+        scale={1.0}
+        yOffset={-0.6}
+        rotationY={-0.25}
+        reduced={reduced}
+        speed={0.55}
+        recolor={shirtRecolor}
+      />
+
+      {/* Resin bottle — right side */}
+      {!isMobile ? (
+        <FloatingSpecimen
+          url={RESIN_URL}
+          position={[3.3, 0.1, 0]}
+          scale={0.9}
+          yOffset={-0.65}
+          rotationY={-0.4}
+          reduced={reduced}
+          speed={0.7}
+        />
+      ) : null}
     </MouseParallax>
   );
 }

@@ -32,6 +32,21 @@ export default function OurStorePage() {
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(storeJsonLd) }}
       />
       <StoreHero />
+      <KineticBand
+        words={[
+          "3D Printing",
+          "Filament Hissing",
+          "Layer by Layer",
+          "Resin Pouring",
+          "Laser Engraving",
+          "Heat Press",
+          "Vinyl Cutting",
+          "DTG",
+        ]}
+        direction="left"
+        variant="outline"
+        glyph="⚙"
+      />
       <StudioGallery />
       <MachineLineup />
       <NoteFromSpace />
