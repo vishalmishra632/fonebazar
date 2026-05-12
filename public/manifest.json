@@ -1,0 +1,14 @@
+{
+  "name": "fonebazar",
+  "short_name": "fonebazar",
+  "description": "Five crafts, one studio. 3D printing, laser engraving, resin art, custom tees, and precision decals in Sault Ste. Marie.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#191007",
+  "theme_color": "#EDD25A",
+  "icons": [
+    { "src": "/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" },
+    { "src": "/icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml" }
+  ]
+}
