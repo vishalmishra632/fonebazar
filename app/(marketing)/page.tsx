@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
+import { SpecimenStrip } from "@/components/home/SpecimenStrip";
 import { ServicesShowcase } from "@/components/home/ServicesShowcase";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
@@ -64,6 +65,7 @@ export default function HomePage() {
       />
       <HeroSection />
       <KineticBand words={TRUST_WORDS} direction="left" variant="outline" />
+      <SpecimenStrip />
       <ServicesShowcase />
       <KineticBand words={STUDIO_WORDS} direction="right" variant="fill" />
       <ProcessSection />
