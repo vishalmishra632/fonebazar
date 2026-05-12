@@ -12,7 +12,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Container } from "@/components/shared/Container";
+import { TextMorph } from "@/components/motion/TextMorph";
 import { siteConfig } from "@/lib/data/site";
 import { buildWhatsAppOrderURL } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
@@ -83,8 +85,13 @@ export function Navbar() {
                         : "text-muted-foreground hover:text-foreground",
                     )}
                   >
-                    {link.label}
-                    <ChevronDown className="h-3.5 w-3.5" />
+                    <TextMorph>{link.label}</TextMorph>
+                    <ChevronDown
+                      className={cn(
+                        "h-3.5 w-3.5 transition-transform",
+                        productsOpen && "rotate-180",
+                      )}
+                    />
                     {active ? (
                       <motion.span
                         layoutId="nav-underline"
@@ -144,7 +151,7 @@ export function Navbar() {
                     : "text-muted-foreground hover:text-foreground",
                 )}
               >
-                {link.label}
+                <TextMorph>{link.label}</TextMorph>
                 {active ? (
                   <motion.span
                     layoutId="nav-underline"
@@ -166,6 +173,7 @@ export function Navbar() {
             <MessageCircle className="h-4 w-4" />
             Chat
           </a>
+          <ThemeToggle />
           <CartDrawer />
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger
