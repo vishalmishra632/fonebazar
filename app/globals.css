@@ -159,6 +159,11 @@
   --layer-line: oklch(0.14 0.008 65 / 0.04);
   --reg-mark: oklch(0.54 0.17 78 / 0.6);
 
+  /* Brand variant for very large display text — knocks brightness down so
+     headline-scale fills aren't eye-searing. Use for KineticBand and any
+     other display-scale brand text; keep `--brand` for CTAs and accents. */
+  --brand-muted: oklch(0.50 0.16 78 / 0.65);
+
   /* Ambient amber (light-mode fallback — lower saturation on white) */
   --amber-glow: oklch(0.68 0.14 70 / 0.12);
   --amber-subtle: oklch(0.68 0.14 70 / 0.04);
@@ -206,6 +211,10 @@
   --signal-idle: oklch(0.72 0.10 145);
 
   --input: oklch(0.30 0.012 55 / 0.8);
+
+  /* Brand-muted — dark-mode display variant (slightly less bright, lower
+     chroma than --brand, plus alpha for soft headline fills). */
+  --brand-muted: oklch(0.78 0.13 95 / 0.62);
 
   /* Elevation — deeper shadows on dark bg */
   --elevation-1: 0 1px 2px oklch(0 0 0 / 0.45);

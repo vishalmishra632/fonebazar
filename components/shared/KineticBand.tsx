@@ -52,15 +52,16 @@ export function KineticBand({
               className={cn(
                 "text-kinetic shrink-0",
                 variant === "outline" &&
-                  "text-transparent [-webkit-text-stroke:2px_var(--brand)]",
-                variant === "fill" && "text-brand",
+                  "text-transparent [-webkit-text-stroke:1.5px_var(--brand-muted)]",
+                variant === "fill" &&
+                  "[color:var(--brand-muted)]",
               )}
             >
               {word}
             </span>
             <span
               aria-hidden
-              className="shrink-0 font-display text-4xl text-brand/60 md:text-6xl"
+              className="shrink-0 font-display text-4xl md:text-6xl [color:var(--brand-muted)] opacity-70"
             >
               {glyph}
             </span>
