@@ -49,10 +49,9 @@ export function StudioSection() {
             <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-[-0.02em] md:text-5xl">
               A real workshop. A real corner of Sault Ste. Marie.
             </h2>
-            {/* TODO: replace [STREET PLACEHOLDER] with real street/area before launch */}
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
               We&apos;re not a dropshipper. We&apos;re a small workshop on{" "}
-              <span className="text-foreground">[STREET PLACEHOLDER]</span> in Sault
+              <span className="text-foreground">253 Bruce St</span> in Sault
               Ste. Marie, run by a team that answers WhatsApp messages themselves.
               When you order a piece, someone whose name you know picks the material,
               runs the machine, and inspects the final result before it ships or

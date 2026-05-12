@@ -244,7 +244,7 @@ export const privacyPolicyDoc: LegalDocument = {
           items: [
             "WhatsApp: +1 (705) 971-0676",
             "Email: hello@fonebazar.ca (put \"Privacy\" in the subject)",
-            "Mail: fonebazar studio, Sault Ste. Marie, Ontario, Canada (specific address available on request — message us to get it)",
+            "Mail: fonebazar studio, 253 Bruce St, Sault Ste. Marie, ON, Canada",
           ],
         },
       ],

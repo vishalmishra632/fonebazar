@@ -6,9 +6,8 @@ import { Container } from "@/components/shared/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { EASE_HERO } from "@/lib/animations";
 
-// TODO: replace with real street address in Phase 9
 const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Sault+Ste+Marie+Ontario+Canada";
+  "https://www.google.com/maps/search/?api=1&query=253+Bruce+St+Sault+Ste+Marie+ON+Canada";
 
 export function LocationCard() {
   return (
@@ -76,7 +75,7 @@ export function LocationCard() {
               fonebazar studio
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Sault Ste. Marie, ON, Canada
+              253 Bruce St, Sault Ste. Marie, ON, Canada
             </p>
             <a
               href={MAPS_URL}

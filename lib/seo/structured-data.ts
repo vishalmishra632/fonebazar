@@ -48,6 +48,7 @@ export const homeJsonLd = {
   telephone: "+1-705-971-0676",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "253 Bruce St",
     addressLocality: "Sault Ste. Marie",
     addressRegion: "ON",
     addressCountry: "CA",
@@ -97,6 +98,7 @@ export const servicesJsonLd = {
     name: siteConfig.name,
     address: {
       "@type": "PostalAddress",
+      streetAddress: "253 Bruce St",
       addressLocality: "Sault Ste. Marie",
       addressRegion: "ON",
       addressCountry: "CA",
@@ -130,6 +132,7 @@ export const aboutJsonLd = {
     foundingDate: "2022",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "253 Bruce St",
       addressLocality: "Sault Ste. Marie",
       addressRegion: "ON",
       addressCountry: "CA",
@@ -152,6 +155,7 @@ export const contactJsonLd = {
     email: siteConfig.contact.email,
     address: {
       "@type": "PostalAddress",
+      streetAddress: "253 Bruce St",
       addressLocality: "Sault Ste. Marie",
       addressRegion: "ON",
       addressCountry: "CA",
@@ -195,6 +199,7 @@ export const storeJsonLd = {
   email: siteConfig.contact.email,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "253 Bruce St",
     addressLocality: "Sault Ste. Marie",
     addressRegion: "ON",
     addressCountry: "CA",

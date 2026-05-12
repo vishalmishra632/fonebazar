@@ -193,16 +193,15 @@ export interface VisitBlock {
   icon: VisitIcon;
 }
 
-// TODO: confirm street and alley names with client before launch
 export const visitCopy: Record<"parking" | "entrance" | "inside", VisitBlock> = {
   parking: {
     title: "Where to park.",
-    body: "Street parking on [PLACEHOLDER — e.g., Queen Street] is free after 6pm and on weekends. Weekday daytime is a 2hr limit. There's also a small lot behind the building — enter from the alley off [PLACEHOLDER].",
+    body: "Street parking along Bruce St is free after 6pm and on weekends. Weekday daytime is a 2hr limit. There's also a small lot behind the building — enter from the alley off Bruce St.",
     icon: "Car",
   },
   entrance: {
     title: "Finding the door.",
-    body: "Look for the violet sign above the door — second unit from the corner. Press the bell once; we'll come down. Doors are locked during working hours so the machines stay dust-free.",
+    body: "Look for 253 Bruce St — second unit from the corner with the yellow sign above the door. Press the bell once; we'll come down. Doors are locked during working hours so the machines stay dust-free.",
     icon: "DoorOpen",
   },
   inside: {

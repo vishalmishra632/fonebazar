@@ -8,9 +8,8 @@ import { siteConfig } from "@/lib/data/site";
 import { buildWhatsAppOrderURL } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
-// TODO: replace with real pinned address once confirmed
 const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Sault+Ste.+Marie+Ontario+Canada";
+  "https://www.google.com/maps/search/?api=1&query=253+Bruce+St+Sault+Ste+Marie+ON+Canada";
 
 interface ContactColumnData {
   icon: LucideIcon;
@@ -49,7 +48,7 @@ export function ContactCard() {
     {
       icon: MapPin,
       label: "Visit",
-      primary: "Sault Ste. Marie, ON",
+      primary: "253 Bruce St, Sault Ste. Marie",
       secondary: "Studio hours: Mon–Sat, 10–6 (by appointment)",
       ctaLabel: "Get directions",
       ctaHref: MAPS_URL,

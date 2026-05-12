@@ -12,10 +12,12 @@ export const siteConfig = {
   contact: {
     email: "hello@fonebazar.ca",
     phone: "+1 (705) 971-0676",
-    address: "Sault Ste. Marie, Ontario, Canada",
+    address: "253 Bruce St, Sault Ste. Marie, ON, Canada",
+    street: "253 Bruce St",
     city: "Sault Ste. Marie",
     region: "ON",
     country: "CA",
+    postalCode: "",
   },
   social: {
     instagram: "",
