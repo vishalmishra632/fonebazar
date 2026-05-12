@@ -26,10 +26,8 @@ interface SpecimenConfig {
   title: string;
   blurb: string;
   service: string;
-  scale: number;
-  yOffset: number;
+  fitSize: number;
   cameraZ: number;
-  cameraFov: number;
   recolorBody?: string;
   recolorSheen?: string;
 }
@@ -40,32 +38,26 @@ const SPECIMENS: SpecimenConfig[] = [
     title: "3D Printing",
     blurb: "FDM + SLA, side by side. Phone stands to figurines.",
     service: "01",
-    scale: 0.06,
-    yOffset: -1.6,
-    cameraZ: 6,
-    cameraFov: 36,
+    fitSize: 3.0,
+    cameraZ: 4.4,
   },
   {
     model: "/models/tshirt.glb",
     title: "Custom Tees",
     blurb: "DTG + heat-press vinyl. Singles or team kits.",
     service: "04",
-    scale: 1.65,
-    yOffset: -0.9,
-    cameraZ: 4.6,
-    cameraFov: 36,
-    recolorBody: "#F5EBD0",
-    recolorSheen: "#FFF6D6",
+    fitSize: 3.2,
+    cameraZ: 4.2,
+    recolorBody: "#C89938",
+    recolorSheen: "#F0D690",
   },
   {
     model: "/models/resin-bottle.glb",
     title: "Resin Art",
     blurb: "Hand-poured wall pieces, coasters, keepsakes.",
     service: "03",
-    scale: 1.4,
-    yOffset: -1.1,
-    cameraZ: 4.2,
-    cameraFov: 38,
+    fitSize: 3.0,
+    cameraZ: 4.4,
   },
 ];
 
@@ -125,10 +117,8 @@ export function SpecimenStrip() {
               <div className="relative aspect-square">
                 <CraftSpecimen
                   modelUrl={spec.model}
-                  scale={spec.scale}
-                  yOffset={spec.yOffset}
+                  fitSize={spec.fitSize}
                   cameraZ={spec.cameraZ}
-                  cameraFov={spec.cameraFov}
                   recolor={
                     spec.recolorBody
                       ? { body: spec.recolorBody, sheen: spec.recolorSheen }

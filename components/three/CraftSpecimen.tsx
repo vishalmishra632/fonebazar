@@ -14,8 +14,8 @@ interface RecolorSpec {
 
 interface CraftSpecimenProps {
   modelUrl: string;
-  scale?: number;
-  yOffset?: number;
+  /** Target on-screen size in world units. Defaults to 2.6 — fits most card aspects. */
+  fitSize?: number;
   cameraZ?: number;
   cameraFov?: number;
   cameraY?: number;
@@ -23,19 +23,16 @@ interface CraftSpecimenProps {
   autoRotateSpeed?: number;
 }
 
-// Reusable wrapper that loads a GLB, sets up consistent lighting, and exposes
-// the model to OrbitControls so the user can drag-to-rotate. Pass `recolor`
-// when you want to overwrite the model's baked material with the brand palette
-// (necessary for any model authored against Maya's default `lambert1`).
-// Leave `recolor` unset to render the model with its source materials —
-// preferable when the original assets carry meaningful multi-mesh colours
-// (e.g. a desktop 3D printer with distinct gantry / build-plate parts).
+// Reusable specimen viewer. Auto-fits every model to a uniform on-screen size
+// via Box3 — different source GLBs have wildly different raw units (the
+// Ultimaker is ~30 units tall, the resin bottle is ~3, the t-shirt is ~1.5),
+// so computing scale from the bounding box is far more reliable than tuning
+// hand-picked scale numbers per model.
 export function CraftSpecimen({
   modelUrl,
-  scale = 1,
-  yOffset = 0,
-  cameraZ = 4,
-  cameraFov = 38,
+  fitSize = 2.6,
+  cameraZ = 4.2,
+  cameraFov = 36,
   cameraY = 0.3,
   recolor,
   autoRotateSpeed = 0.55,
@@ -44,8 +41,7 @@ export function CraftSpecimen({
     <SceneCanvas cameraPosition={[0, cameraY, cameraZ]} cameraFov={cameraFov}>
       <SpecimenContent
         modelUrl={modelUrl}
-        scale={scale}
-        yOffset={yOffset}
+        fitSize={fitSize}
         recolor={recolor}
         autoRotateSpeed={autoRotateSpeed}
       />
@@ -55,26 +51,44 @@ export function CraftSpecimen({
 
 interface ContentProps {
   modelUrl: string;
-  scale: number;
-  yOffset: number;
+  fitSize: number;
   recolor?: RecolorSpec;
   autoRotateSpeed: number;
 }
 
 function SpecimenContent({
   modelUrl,
-  scale,
-  yOffset,
+  fitSize,
   recolor,
   autoRotateSpeed,
 }: ContentProps) {
   const reduced = useReducedMotion();
   const { scene } = useGLTF(modelUrl);
-  const cloned = useMemo(() => scene.clone(true), [scene]);
+
+  // Clone, then auto-fit + auto-center. Re-runs only when the source scene
+  // or the desired fit size change.
+  const fitted = useMemo(() => {
+    const cloned = scene.clone(true);
+
+    const box = new THREE.Box3().setFromObject(cloned);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z) || 1;
+    const scale = fitSize / maxDim;
+
+    // Wrap in a parent group so we can scale and translate without fighting
+    // the source object's own transforms.
+    const group = new THREE.Group();
+    cloned.position.copy(center.multiplyScalar(-1));
+    group.add(cloned);
+    group.scale.setScalar(scale);
+
+    return group;
+  }, [scene, fitSize]);
 
   useEffect(() => {
     if (!recolor) return;
-    cloned.traverse((child) => {
+    fitted.traverse((child) => {
       if (!(child instanceof THREE.Mesh)) return;
       const original = child.material as THREE.MeshStandardMaterial;
       child.castShadow = true;
@@ -92,7 +106,7 @@ function SpecimenContent({
         sheenRoughness: 0.85,
       });
     });
-  }, [cloned, recolor]);
+  }, [fitted, recolor]);
 
   return (
     <>
@@ -104,7 +118,7 @@ function SpecimenContent({
       />
       <directionalLight position={[0, -2, 2]} intensity={0.25} color="#FFF2A0" />
 
-      <primitive object={cloned} scale={scale} position={[0, yOffset, 0]} />
+      <primitive object={fitted} />
 
       <OrbitControls
         enableZoom={false}

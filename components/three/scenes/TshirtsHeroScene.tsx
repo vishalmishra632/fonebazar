@@ -4,7 +4,6 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useEffect, useMemo } from "react";
 import * as THREE from "three";
 import { SceneCanvas } from "@/components/three/SceneCanvas";
-import { useThemedMatcaps } from "@/hooks/use-themed-matcaps";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 // Realistic t-shirt mockup — loads a Marvelous-Designer-sculpted glTF with
@@ -52,18 +51,21 @@ function ClothShirt({ palette }: { palette: ShirtPalette }) {
     });
   }, [cloned, palette]);
 
-  return <primitive object={cloned} scale={1.9} position={[0, -1.05, 0]} />;
+  return <primitive object={cloned} scale={2.4} position={[0, -1.3, 0]} />;
 }
 
 useGLTF.preload(MODEL_URL);
 
 function SceneContent() {
-  const { isLight } = useThemedMatcaps();
   const reduced = useReducedMotion();
 
-  const palette: ShirtPalette = isLight
-    ? { body: "#1c1714", sheen: "#3a2f23" }
-    : { body: "#F5EBD0", sheen: "#FFF6D6" };
+  // Unified mustard/caramel — looks rich on both light and dark backgrounds,
+  // ties to the brand gold without competing with the CTA fill, and reads
+  // unmistakably as a printed cotton tee rather than a silhouette.
+  const palette: ShirtPalette = {
+    body: "#C89938",
+    sheen: "#F0D690",
+  };
 
   return (
     <>
@@ -93,7 +95,7 @@ function SceneContent() {
 
 export default function TshirtsHeroScene() {
   return (
-    <SceneCanvas cameraPosition={[0, 0.3, 4.6]} cameraFov={36}>
+    <SceneCanvas cameraPosition={[0, 0.2, 3.8]} cameraFov={36}>
       <SceneContent />
     </SceneCanvas>
   );
