@@ -2,7 +2,7 @@
 
 import { Float } from "@react-three/drei";
 import { SceneCanvas } from "@/components/three/SceneCanvas";
-import { useMatcap } from "@/components/three/primitives/Matcap";
+import { useThemedMatcaps } from "@/hooks/use-themed-matcaps";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -19,11 +19,14 @@ const TORI_MOBILE = TORI_DESKTOP.slice(0, 3);
 function SceneContent() {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
-  const matcap = useMatcap("yellow");
+  const { primaryColor, isLight } = useThemedMatcaps();
   const tori = isMobile ? TORI_MOBILE : TORI_DESKTOP;
 
   return (
     <>
+      {/* Single unshadowed point light makes the resin tori glow translucently */}
+      <pointLight position={[0, 0, 2]} intensity={isLight ? 1.1 : 1.8} color="#FFE9A8" />
+
       {tori.map((torus, index) => (
         <Float
           key={index}
@@ -33,8 +36,19 @@ function SceneContent() {
           position={torus.pos}
         >
           <mesh rotation={torus.rot}>
-            <torusGeometry args={[torus.radius, 0.05, 14, 96]} />
-            <meshMatcapMaterial matcap={matcap} transparent opacity={0.7} />
+            <torusGeometry args={[torus.radius, 0.06, 20, 96]} />
+            <meshPhysicalMaterial
+              color={primaryColor}
+              transmission={0.55}
+              thickness={0.6}
+              ior={1.35}
+              roughness={0.18}
+              metalness={0}
+              attenuationColor={isLight ? "#B6721E" : "#EDD25A"}
+              attenuationDistance={2.5}
+              transparent
+              opacity={0.85}
+            />
           </mesh>
         </Float>
       ))}

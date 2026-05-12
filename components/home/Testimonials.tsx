@@ -62,7 +62,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
             className="h-9 w-9 rounded-full"
             style={{
               background:
-                "conic-gradient(from 200deg, oklch(0.62 0.22 285), oklch(0.72 0.16 260), oklch(0.62 0.22 285))",
+                "conic-gradient(from 200deg, oklch(0.84 0.15 95), oklch(0.70 0.14 78), oklch(0.84 0.15 95))",
             }}
           />
           <div className="leading-tight">

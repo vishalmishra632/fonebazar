@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 
-export type MatcapVariant = "yellow" | "bone" | "ink";
+export type MatcapVariant = "yellow" | "amber" | "bone" | "ink";
 
 interface MatcapRecipe {
   highlight: string;
@@ -12,7 +12,11 @@ interface MatcapRecipe {
 }
 
 const RECIPES: Record<MatcapVariant, MatcapRecipe> = {
-  yellow: { highlight: "#FFFBDD", mid: "#F4E400", shadow: "#4A3C00" },
+  // Golden leaf — warm, luxurious. Sits in the 0.88 0.17 97 OKLCH neighbourhood.
+  yellow: { highlight: "#FFF1B0", mid: "#EDD25A", shadow: "#3A2F08" },
+  // Warm bronze/amber — used as light-mode primary so 3D volumes read
+  // against white as a rich metallic, not a black silhouette.
+  amber: { highlight: "#FFE69A", mid: "#B6721E", shadow: "#2A1804" },
   bone: { highlight: "#FFFFFF", mid: "#E8E0D0", shadow: "#4A3E2A" },
   ink: { highlight: "#453B1F", mid: "#1A140A", shadow: "#020201" },
 };

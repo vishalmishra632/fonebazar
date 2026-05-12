@@ -42,7 +42,7 @@ export function FeaturedStrip({ products }: FeaturedStripProps) {
       className="relative -mx-6 mt-12 overflow-hidden rounded-3xl bg-brand-subtle px-6 py-10 md:mx-0 md:px-10"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom right, oklch(0.62 0.22 285 / 0.1), transparent 70%)",
+          "linear-gradient(to bottom right, oklch(0.80 0.16 92 / 0.1), transparent 70%)",
       }}
     >
       <div className="mb-6 flex items-baseline justify-between gap-4">

@@ -142,10 +142,30 @@ export function ServiceBlock({ service, productCount, flipped = false }: Service
         </div>
       </Container>
 
-      <div
-        aria-hidden
-        className="mx-auto mt-16 h-24 w-px bg-gradient-to-b from-border/40 to-transparent"
-      />
+      <PourDivider />
     </section>
+  );
+}
+
+function PourDivider() {
+  return (
+    <motion.div
+      aria-hidden
+      initial={{ opacity: 0, scaleY: 0 }}
+      whileInView={{ opacity: 1, scaleY: 1 }}
+      viewport={{ once: true, margin: "-20%" }}
+      transition={{ duration: 0.9, ease: EASE_HERO }}
+      style={{ transformOrigin: "top" }}
+      className="mx-auto mt-16 h-24 w-[2px]"
+    >
+      <svg
+        viewBox="0 0 2 96"
+        preserveAspectRatio="none"
+        className="h-full w-full text-border"
+      >
+        <line x1="1" y1="0" x2="1" y2="78" stroke="currentColor" strokeWidth="1" />
+        <circle cx="1" cy="88" r="3" className="fill-brand" opacity="0.75" />
+      </svg>
+    </motion.div>
   );
 }

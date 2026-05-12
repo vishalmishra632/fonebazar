@@ -47,7 +47,7 @@ export function LocationCard() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 45% 55% at 48% 52%, oklch(0.62 0.22 285 / 0.35), transparent 65%)",
+                "radial-gradient(ellipse 45% 55% at 48% 52%, oklch(0.80 0.16 92 / 0.35), transparent 65%)",
             }}
           />
 
@@ -64,7 +64,7 @@ export function LocationCard() {
               <div
                 aria-hidden
                 className="relative flex h-12 w-12 items-center justify-center rounded-full bg-brand text-brand-foreground shadow-xl"
-                style={{ filter: "drop-shadow(0 0 24px oklch(0.62 0.22 285 / 0.55))" }}
+                style={{ filter: "drop-shadow(0 0 24px oklch(0.80 0.16 92 / 0.55))" }}
               >
                 <MapPin className="h-6 w-6" />
               </div>

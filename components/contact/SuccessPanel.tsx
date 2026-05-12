@@ -53,9 +53,21 @@ function DrawCheck({ reduced }: { reduced: boolean }) {
     ease: EASE_HERO,
   };
   const pathTransition = {
-    duration: reduced ? 0 : 0.4,
+    duration: reduced ? 0 : 0.45,
     delay: reduced ? 0 : 0.5,
     ease: EASE_HERO,
+  };
+  const dotTransition = {
+    duration: reduced ? 0 : 0.55,
+    delay: reduced ? 0 : 0.48,
+    ease: EASE_HERO,
+  };
+
+  // Point sequence traces the check path so the burn-dot lands on the same
+  // geometry the stroke draws. Kept short — three keyframes are enough.
+  const dotPath = {
+    cx: [24, 36, 58],
+    cy: [42, 54, 30],
   };
 
   return (
@@ -70,7 +82,7 @@ function DrawCheck({ reduced }: { reduced: boolean }) {
         cy="40"
         r="36"
         fill="none"
-        stroke="oklch(0.62 0.22 285)"
+        stroke="var(--brand)"
         strokeWidth="2"
         strokeLinecap="round"
         pathLength={1}
@@ -82,7 +94,7 @@ function DrawCheck({ reduced }: { reduced: boolean }) {
       <motion.path
         d="M 24 42 L 36 54 L 58 30"
         fill="none"
-        stroke="oklch(0.62 0.22 285)"
+        stroke="var(--brand)"
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -92,6 +104,16 @@ function DrawCheck({ reduced }: { reduced: boolean }) {
         animate={{ strokeDashoffset: 0 }}
         transition={pathTransition}
       />
+      {reduced ? null : (
+        <motion.circle
+          r="2.5"
+          fill="var(--brand)"
+          initial={{ cx: 24, cy: 42, opacity: 0 }}
+          animate={{ cx: dotPath.cx, cy: dotPath.cy, opacity: [0, 1, 1, 0] }}
+          transition={dotTransition}
+          style={{ filter: "drop-shadow(0 0 6px var(--brand))" }}
+        />
+      )}
     </svg>
   );
 }

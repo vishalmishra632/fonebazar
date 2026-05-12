@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SmoothScrollProvider } from "@/components/animations/SmoothScrollProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { FlyToCartOverlay } from "@/components/products/FlyToCartOverlay";
 import { BackToTop } from "@/components/shared/BackToTop";
+import { CacheBootstrapper } from "@/components/shared/CacheBootstrapper";
 import { Cursor } from "@/components/shared/Cursor";
 import { GrainOverlay } from "@/components/shared/GrainOverlay";
 import { bodyFont } from "@/lib/fonts";
@@ -30,6 +31,14 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
   },
+  manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#191007" },
+    { media: "(prefers-color-scheme: light)", color: "#FCFCFB" },
+  ],
 };
 
 export default function RootLayout({
@@ -47,7 +56,6 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          forcedTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
@@ -58,6 +66,7 @@ export default function RootLayout({
           <GrainOverlay />
           <Cursor />
           <FlyToCartOverlay />
+          <CacheBootstrapper />
           <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>

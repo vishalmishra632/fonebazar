@@ -1,105 +1,142 @@
 "use client";
 
-import { Float, MeshDistortMaterial } from "@react-three/drei";
+import { Float } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import type { Group, Texture } from "three";
 import { SceneCanvas } from "@/components/three/SceneCanvas";
 import { MouseParallax } from "@/components/three/primitives/MouseCamera";
-import { useMatcap } from "@/components/three/primitives/Matcap";
+import { useThemedMatcaps } from "@/hooks/use-themed-matcaps";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
-function HeroSpecimen({ reduced }: { reduced: boolean }) {
+const LAYER_COUNT = 22;
+const LAYER_HEIGHT = 0.075;
+const MAX_RADIUS = 0.95;
+
+// A vase printed layer-by-layer. Each slab is a hexagonal prism so you can
+// see the faceted edges; a small helical twist makes the layer boundaries
+// obvious. Reads immediately as "3D print" rather than an abstract volume.
+function PrintTower({ reduced, matcap }: { reduced: boolean; matcap: Texture }) {
+  const group = useRef<Group>(null);
+
+  useFrame((_, delta) => {
+    if (!group.current || reduced) return;
+    group.current.rotation.y += delta * 0.28;
+  });
+
+  return (
+    <group ref={group} position={[-0.2, -0.85, 0]}>
+      {Array.from({ length: LAYER_COUNT }).map((_, i) => {
+        const progress = i / (LAYER_COUNT - 1);
+        // Vase silhouette: wide base, pinched waist around 55%, flared lip
+        const shape =
+          0.55 +
+          Math.sin(progress * Math.PI * 1.05) * 0.35 +
+          Math.pow(progress, 3) * 0.22;
+        const radius = MAX_RADIUS * shape;
+        const rotation = i * 0.09;
+        const y = i * LAYER_HEIGHT;
+        return (
+          <mesh key={i} position={[0, y, 0]} rotation={[0, rotation, 0]}>
+            <cylinderGeometry args={[radius, radius, LAYER_HEIGHT * 0.72, 7]} />
+            <meshMatcapMaterial matcap={matcap} />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+}
+
+// Filament spool — flat horizontal torus with a centre hub. The only other
+// shape on screen, positioned top-right so it reads as the "raw material"
+// above the printed object below it.
+function FilamentSpool({
+  reduced,
+  matcap,
+}: {
+  reduced: boolean;
+  matcap: Texture;
+}) {
+  const group = useRef<Group>(null);
+
+  useFrame((_, delta) => {
+    if (!group.current || reduced) return;
+    group.current.rotation.z += delta * 0.35;
+  });
+
   return (
     <Float
-      speed={reduced ? 0 : 1}
-      floatIntensity={reduced ? 0 : 0.9}
-      rotationIntensity={reduced ? 0 : 0.6}
+      speed={reduced ? 0 : 0.5}
+      floatIntensity={reduced ? 0 : 0.25}
+      rotationIntensity={reduced ? 0 : 0.08}
+      position={[1.75, 1.05, -0.4]}
     >
-      <mesh>
-        <icosahedronGeometry args={[1.5, 4]} />
-        <MeshDistortMaterial
-          color="#F4E400"
-          distort={reduced ? 0.25 : 0.38}
-          speed={reduced ? 0 : 1.4}
-          roughness={0.35}
-          metalness={0.15}
-        />
-      </mesh>
+      <group ref={group} rotation={[Math.PI / 2.3, 0, 0]}>
+        <mesh>
+          <torusGeometry args={[0.52, 0.18, 18, 80]} />
+          <meshMatcapMaterial matcap={matcap} />
+        </mesh>
+        <mesh>
+          <cylinderGeometry args={[0.26, 0.26, 0.38, 24]} />
+          <meshMatcapMaterial matcap={matcap} />
+        </mesh>
+      </group>
     </Float>
   );
 }
 
-function YellowTorus({ reduced }: { reduced: boolean }) {
-  const matcap = useMatcap("yellow");
+// Extruder nozzle — a tiny inverted cone + filament strand above the tower,
+// suggesting the print is still in progress. Subtle; only renders on desktop.
+function ExtruderHint({
+  reduced,
+  matcap,
+  mobile,
+}: {
+  reduced: boolean;
+  matcap: Texture;
+  mobile: boolean;
+}) {
+  const strand = useRef<Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!strand.current || reduced || mobile) return;
+    strand.current.position.x = -0.2 + Math.sin(clock.elapsedTime * 0.4) * 0.22;
+  });
+
+  if (mobile) return null;
+
   return (
-    <Float
-      speed={reduced ? 0 : 0.8}
-      floatIntensity={reduced ? 0 : 0.4}
-      rotationIntensity={reduced ? 0 : 0.3}
-      position={[1.3, -0.5, 0.6]}
-    >
-      <mesh rotation={[0.4, 0.2, 0.1]}>
-        <torusGeometry args={[1.4, 0.08, 16, 90]} />
+    <group ref={strand} position={[-0.2, 1.35, 0]}>
+      <mesh>
+        <coneGeometry args={[0.12, 0.22, 16]} />
         <meshMatcapMaterial matcap={matcap} />
       </mesh>
-    </Float>
-  );
-}
-
-function AmbientCluster({ reduced, mobile }: { reduced: boolean; mobile: boolean }) {
-  const yellow = useMatcap("yellow");
-  const bone = useMatcap("bone");
-  const ink = useMatcap("ink");
-
-  const shapes = mobile
-    ? [{ type: "sphere" as const, pos: [-1.8, 1, -0.8] as const, scale: 0.22, matcap: bone }]
-    : [
-        { type: "sphere" as const, pos: [-1.8, 1, -0.8] as const, scale: 0.22, matcap: bone },
-        { type: "box" as const, pos: [-1.9, -1.4, 1.2] as const, scale: 0.2, matcap: yellow },
-        { type: "sphere" as const, pos: [2.2, 1.3, -1.1] as const, scale: 0.16, matcap: ink },
-        { type: "box" as const, pos: [-0.6, -1.8, 0.4] as const, scale: 0.18, matcap: yellow },
-        { type: "sphere" as const, pos: [1.9, -1.2, 1.6] as const, scale: 0.15, matcap: bone },
-      ];
-
-  return (
-    <>
-      {shapes.map((shape, index) => (
-        <Float
-          key={index}
-          speed={reduced ? 0 : 0.8 + (index % 3) * 0.3}
-          floatIntensity={reduced ? 0 : 0.6}
-          rotationIntensity={reduced ? 0 : 0.5}
-          position={shape.pos}
-        >
-          <mesh scale={shape.scale}>
-            {shape.type === "sphere" ? (
-              <sphereGeometry args={[1, 24, 24]} />
-            ) : (
-              <boxGeometry args={[1, 1, 1]} />
-            )}
-            <meshMatcapMaterial matcap={shape.matcap} />
-          </mesh>
-        </Float>
-      ))}
-    </>
+      <mesh position={[0, -0.25, 0]}>
+        <cylinderGeometry args={[0.014, 0.014, 0.35, 8]} />
+        <meshMatcapMaterial matcap={matcap} />
+      </mesh>
+    </group>
   );
 }
 
 function SceneContent() {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
+  const { primary, accentA } = useThemedMatcaps();
 
   return (
-    <MouseParallax strength={isMobile ? 0 : 0.25} disabled={isMobile || reduced}>
-      <HeroSpecimen reduced={reduced} />
-      <YellowTorus reduced={reduced} />
-      <AmbientCluster reduced={reduced} mobile={isMobile} />
+    <MouseParallax strength={isMobile ? 0 : 0.18} disabled={isMobile || reduced}>
+      <PrintTower reduced={reduced} matcap={primary} />
+      <FilamentSpool reduced={reduced} matcap={accentA} />
+      <ExtruderHint reduced={reduced} matcap={accentA} mobile={isMobile} />
     </MouseParallax>
   );
 }
 
 export default function HomeHeroScene() {
   return (
-    <SceneCanvas cameraPosition={[0, 0, 6]}>
+    <SceneCanvas cameraPosition={[0, 0.4, 5]}>
       <SceneContent />
     </SceneCanvas>
   );

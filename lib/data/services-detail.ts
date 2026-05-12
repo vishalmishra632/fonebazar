@@ -1,7 +1,7 @@
 import type { ServiceSlug } from "@/lib/types/product";
 
-// placeholder — replace in Phase 9
-const PH = (id: string) => `https://images.unsplash.com/photo-${id}?w=1600&q=80`;
+const PH = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?w=1600&q=80&auto=format&fit=crop`;
 
 export interface ServiceCapability {
   label: string;
@@ -37,7 +37,7 @@ export const servicesDetail: ServiceDetail[] = [
     ],
     useCases: ["Prototypes", "Replacement Parts", "Miniatures", "Home Decor", "Custom Gifts"],
     leadTime: "2–6 days (simple) · 10–14 days (complex resin)",
-    heroImage: PH("1631283894932-af1ccd9a3016"),
+    heroImage: PH("1743056586194-837401d75e0a"),
   },
   {
     number: "02",
@@ -55,7 +55,7 @@ export const servicesDetail: ServiceDetail[] = [
     ],
     useCases: ["Signage", "Wedding Gifts", "Awards", "Branded Merch", "Personalised Homeware"],
     leadTime: "3–6 days",
-    heroImage: PH("1565717106-17ad97d9c0eb"),
+    heroImage: PH("1615286922420-c6b348ffbd62"),
   },
   {
     number: "03",
@@ -73,7 +73,7 @@ export const servicesDetail: ServiceDetail[] = [
     ],
     useCases: ["Wall Art", "Coasters", "Trays", "Jewellery", "Memorial Keepsakes"],
     leadTime: "5–14 days (cure time driven)",
-    heroImage: PH("1578320340584-aec62ea79a3a"),
+    heroImage: PH("1772752021241-2d922cadbab1"),
   },
   {
     number: "04",
@@ -91,7 +91,7 @@ export const servicesDetail: ServiceDetail[] = [
     ],
     useCases: ["Team Kits", "Event Merch", "Brand Apparel", "Personal Gifts", "Small Drops"],
     leadTime: "3–10 days (volume dependent)",
-    heroImage: PH("1503342217505-b0a15ec3261c"),
+    heroImage: PH("1663433567177-9f94be0bff4c"),
   },
   {
     number: "05",
@@ -109,7 +109,7 @@ export const servicesDetail: ServiceDetail[] = [
     ],
     useCases: ["Vehicle Graphics", "Storefronts", "Laptop Art", "Event Signage", "Wall Vinyl"],
     leadTime: "2–5 days",
-    heroImage: PH("1609205807490-89c0a16b5f62"),
+    heroImage: PH("1484239398315-f1681ef72fe6"),
   },
 ];
 
@@ -151,9 +151,8 @@ export const servicesFaqs: readonly ServicesFaqItem[] = [
   },
 ];
 
-// TODO: replace with real studio imagery before launch
 export const studioImages = {
-  main: PH("1631283894932-af1ccd9a3016"),
-  accentTop: PH("1581092160607-ee22621dd758"),
-  accentBottom: PH("1565717106-17ad97d9c0eb"),
+  main: PH("1547609434-b732edfee020"),
+  accentTop: PH("1739607448062-7d4accb12fe1"),
+  accentBottom: PH("1687382130081-ebd36ecd38a9"),
 } as const;

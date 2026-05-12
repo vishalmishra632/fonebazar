@@ -101,7 +101,7 @@ function ContactColumn({ data }: { data: ContactColumnData }) {
         data.border && "md:border-x md:border-border/30",
       )}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand transition-all duration-300 group-hover:shadow-[0_0_24px_oklch(0.62_0.22_285/0.3)]">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand transition-all duration-300 group-hover:shadow-[0_0_24px_oklch(0.80_0.16_92/0.3)]">
         <Icon className="h-5 w-5" />
       </div>
       <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">

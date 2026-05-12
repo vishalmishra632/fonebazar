@@ -8,8 +8,9 @@ export function AboutValuesFallback({ number }: AboutValuesFallbackProps) {
       <span
         className="font-display text-6xl font-semibold leading-none lg:text-7xl"
         style={{
-          WebkitTextStroke: "1.5px oklch(0.92 0.19 103 / 0.7)",
+          WebkitTextStroke: "1.5px var(--brand)",
           color: "transparent",
+          opacity: 0.7,
         }}
       >
         {number}

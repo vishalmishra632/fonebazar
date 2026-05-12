@@ -42,7 +42,7 @@ function Curtain({ active }: { active: boolean }) {
       <planeGeometry args={[20, 20, 48, 48]} />
       <MeshDistortMaterial
         ref={mat as never}
-        color="#F4E400"
+        color="#EDD25A"
         distort={0}
         speed={3}
         roughness={0.3}

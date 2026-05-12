@@ -12,7 +12,7 @@ export function HowPickupWorks() {
       className="relative py-20 lg:py-28"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom, oklch(0.62 0.22 285 / 0.06), transparent 60%)",
+          "linear-gradient(to bottom, oklch(0.80 0.16 92 / 0.06), transparent 60%)",
       }}
     >
       <Container>

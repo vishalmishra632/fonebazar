@@ -77,13 +77,13 @@ export function ProcessDeepDive() {
                 delay: index * 0.08,
                 ease: EASE_HERO,
               }}
-              className="group rounded-2xl border border-border/40 bg-surface-1 p-6 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_0_40px_oklch(0.62_0.22_285/0.15)]"
+              className="group rounded-2xl border border-border/40 bg-surface-1 p-6 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_0_40px_oklch(0.80_0.16_92/0.15)]"
             >
               <span
                 aria-hidden
                 className="block font-display text-[56px] font-semibold leading-none text-brand/25"
                 style={{
-                  WebkitTextStroke: "1px oklch(0.62 0.22 285 / 0.5)",
+                  WebkitTextStroke: "1px oklch(0.80 0.16 92 / 0.5)",
                   color: "transparent",
                 }}
               >

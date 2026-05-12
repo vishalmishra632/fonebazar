@@ -1,4 +1,6 @@
-// TODO: replace with client-supplied imagery before launch
+// Curated imagery — replaced in Phase 10.5 after the initial set returned 404s.
+// Each entry matches its caption semantically: a lattice lamp photo goes with
+// "Lattice Lamp", etc. If the catalogue grows, add entries here only.
 export interface FeaturedWorkItem {
   src: string;
   alt: string;
@@ -8,42 +10,48 @@ export interface FeaturedWorkItem {
   rows?: number;
 }
 
+const U = (id: string, w = 1600) =>
+  `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const P = (id: number, w = 1600) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?w=${w}&auto=compress&cs=tinysrgb`;
+
 export const featuredWork: readonly FeaturedWorkItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1581091870622-1e7e3fbfac08?w=1600&q=80",
-    alt: "3D printed geometric sculpture on a studio workbench",
+    src: P(788855, 1800),
+    alt: "Glowing Edison bulb inside a faceted polyhedral lattice cage casting geometric shadows",
     title: "Lattice Lamp",
     service: "3D Print",
     cols: 2,
     rows: 2,
   },
   {
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
-    alt: "Laser engraved oak coaster with a geometric motif",
+    src: P(16446245, 1200),
+    alt: "Espresso cup resting on a laser-engraved round wooden coaster",
     title: "Oak Coaster Set",
     service: "Laser Engraving",
   },
   {
-    src: "https://images.unsplash.com/photo-1578320340584-aec62ea79a3a?w=900&q=80",
-    alt: "Resin wall piece with swirling ocean-blue pigment",
+    src: U("1637531645804-ca7c17feea5c", 1200),
+    alt: "Blue and teal epoxy resin wall piece with swirled pigment",
     title: "Ocean Flow",
     service: "Resin Art",
   },
   {
-    src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&q=80",
-    alt: "Folded custom-printed t-shirt in soft lighting",
+    src: P(8346226, 1200),
+    alt: "Stack of matching custom-printed team t-shirts in studio lighting",
     title: "Team Merch",
     service: "T-Shirt Print",
   },
   {
-    src: "https://images.unsplash.com/photo-1609205807490-89c0a16b5f62?w=900&q=80",
-    alt: "Stack of printed vinyl decals",
+    src: P(19919394, 1200),
+    alt: "Custom die-cut vinyl sticker sheet ready to be applied to laptops",
     title: "Laptop Decals",
     service: "Decal Print",
   },
   {
-    src: "https://images.unsplash.com/photo-1631283894932-af1ccd9a3016?w=1800&q=80",
-    alt: "3D printer in action with a half-finished print",
+    src: U("1764115424769-ebdd2683d5a8", 1800),
+    alt: "Moody wide-angle shot of the fonebazar studio with machines running",
     title: "Studio at Work",
     service: "Behind the Scenes",
     cols: 4,

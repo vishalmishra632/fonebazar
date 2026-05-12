@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,8 +10,13 @@ import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/shared/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { servicesShowcase } from "@/lib/data/services-content";
+import { servicesDetail } from "@/lib/data/services-detail";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
+
+const SERVICE_IMAGE_BY_SLUG: Record<string, string> = Object.fromEntries(
+  servicesDetail.map((service) => [service.slug, service.heroImage]),
+);
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -180,26 +185,27 @@ function ServicePanel({ service, stacked }: ServicePanelProps) {
         </div>
         <div
           className={cn(
-            "relative overflow-hidden rounded-2xl",
+            "group/card relative overflow-hidden rounded-2xl bg-surface-2 shadow-[var(--elevation-2)]",
             stacked ? "order-1 aspect-square md:order-2" : "col-span-5 aspect-square",
           )}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-brand/30 via-transparent to-brand/5" />
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 30% 30%, oklch(0.62 0.22 285 / 0.3), transparent 55%)",
-            }}
+          <Image
+            src={SERVICE_IMAGE_BY_SLUG[service.slug] ?? ""}
+            alt={`${service.name} at work in the fonebazar studio`}
+            fill
+            sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.04]"
+            unoptimized
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.span
-              className="font-display text-[8rem] font-semibold text-foreground/10 lg:text-[12rem]"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {service.number}
-            </motion.span>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-background/10 via-transparent to-background/30"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute bottom-4 left-4 font-display text-5xl font-semibold leading-none text-brand drop-shadow-lg md:text-6xl"
+          >
+            {service.number}
           </div>
         </div>
       </div>

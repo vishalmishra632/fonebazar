@@ -28,7 +28,7 @@ export function LegalSection({ section }: LegalSectionProps) {
             aria-hidden
             className="block font-display text-5xl font-semibold leading-none lg:text-6xl"
             style={{
-              WebkitTextStroke: "1px oklch(0.62 0.22 285 / 0.55)",
+              WebkitTextStroke: "1px oklch(0.80 0.16 92 / 0.55)",
               color: "transparent",
             }}
           >

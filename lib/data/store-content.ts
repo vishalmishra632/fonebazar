@@ -1,7 +1,7 @@
 import type { ServiceSlug } from "@/lib/types/product";
 
-// placeholder — replace in Phase 9
-const PH = (id: string) => `https://images.unsplash.com/photo-${id}?w=1400&q=80`;
+const PH = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?w=1400&q=80&auto=format&fit=crop`;
 
 export type GalleryAspect = "4/5" | "3/4" | "1/1" | "5/4" | "4/3";
 
@@ -15,37 +15,37 @@ export interface GalleryItem {
 // TODO: replace with real studio imagery in Phase 9
 export const gallery: GalleryItem[] = [
   {
-    src: PH("1631283894932-af1ccd9a3016"),
+    src: PH("1547609434-b732edfee020"),
     alt: "The fonebazar studio floor with machines running",
     caption: "The whole room, mid-Tuesday.",
     aspect: "5/4",
   },
   {
-    src: PH("1581091870622-1e7e3fbfac08"),
+    src: PH("1742971500442-8fb8610dfbf5"),
     alt: "A 3D printer laying down a colourful lattice object",
     caption: "Layer 247 of a custom trophy.",
     aspect: "3/4",
   },
   {
-    src: PH("1565717106-17ad97d9c0eb"),
+    src: PH("1758387933125-5ac945b4e2cd"),
     alt: "A laser cutter engraving a wooden coaster",
     caption: "Oak coaster run for a wedding.",
     aspect: "4/5",
   },
   {
-    src: PH("1578320340584-aec62ea79a3a"),
+    src: PH("1713882717490-b1d3ba1b5384"),
     alt: "Hand pouring blue and teal resin into a wall panel",
     caption: "Ocean-flow wall piece, day two.",
     aspect: "1/1",
   },
   {
-    src: PH("1618932260643-eee4a2f652a6"),
+    src: PH("1663433567177-9f94be0bff4c"),
     alt: "Heat press closing down on a custom printed t-shirt",
     caption: "Team kit, final cure.",
     aspect: "4/3",
   },
   {
-    src: PH("1609205807490-89c0a16b5f62"),
+    src: PH("1615378809998-afc205e73bad"),
     alt: "Tweezers weeding the negative from a cut vinyl decal",
     caption: "A fiddly decal.",
     aspect: "3/4",
@@ -78,7 +78,7 @@ export const machines: Machine[] = [
     handles: ["PLA, PETG, ABS, TPU", "256 × 256 × 256 mm", "Multi-colour via AMS"],
     description:
       "Our workhorse for functional parts, prototypes, and larger print runs.",
-    image: PH("1611605698323-b1e99cfd37ea"),
+    image: PH("1739607448062-7d4accb12fe1"),
     status: "running",
     statusMessages: [
       "Printing a phone stand",
@@ -99,7 +99,7 @@ export const machines: Machine[] = [
     ],
     description:
       "For anything that needs sharp detail — figurines, ring masters, intricate geometry.",
-    image: PH("1578662996442-48f60103fc96"),
+    image: PH("1737010513550-9a2040761980"),
     status: "idle",
     statusMessages: ["Curing complete", "Bed cleaned", "Ready for next job"],
   },
@@ -116,7 +116,7 @@ export const machines: Machine[] = [
     ],
     description:
       "Clean kerfs, crisp engraving, and the constant smell of toasted basswood.",
-    image: PH("1565717106-17ad97d9c0eb"),
+    image: PH("1687382130081-ebd36ecd38a9"),
     status: "running",
     statusMessages: [
       "Engraving oak coasters",
@@ -137,7 +137,7 @@ export const machines: Machine[] = [
     ],
     description:
       "A dedicated pour bench with heated curing so pieces set properly in winter.",
-    image: PH("1578320340584-aec62ea79a3a"),
+    image: PH("1772752021241-2d922cadbab1"),
     status: "queued",
     statusMessages: [
       "Waiting on pigment delivery",
@@ -158,7 +158,7 @@ export const machines: Machine[] = [
     ],
     description:
       "Between the two, we cover everything from one-off custom tees to full team kits.",
-    image: PH("1503342217505-b0a15ec3261c"),
+    image: PH("1663433567177-9f94be0bff4c"),
     status: "idle",
     statusMessages: ["Platen clean", "Waiting on next kit", "Ink topped up"],
   },
@@ -175,7 +175,7 @@ export const machines: Machine[] = [
     ],
     description:
       "Handles everything from a laptop sticker to a full storefront window graphic.",
-    image: PH("1609205807490-89c0a16b5f62"),
+    image: PH("1615378809998-afc205e73bad"),
     status: "running",
     statusMessages: [
       "Cutting a 2x3ft storefront decal",

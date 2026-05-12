@@ -1,8 +1,8 @@
 export function StoreMachinesFallback() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden text-brand">
       <svg viewBox="0 0 800 400" className="h-full w-full opacity-30">
-        <g fill="none" stroke="#F4E400" strokeWidth="1.5">
+        <g fill="none" stroke="currentColor" strokeWidth="1.5">
           <g transform="translate(90 220)">
             <ellipse rx="40" ry="5" />
             <ellipse cy="-12" rx="32" ry="4" />

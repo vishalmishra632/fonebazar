@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import type { Product } from "@/lib/types/product";
 import { siteConfig } from "@/lib/data/site";
 import { EASE_HERO } from "@/lib/animations";
+import { TiltOnHover } from "@/components/motion/TiltOnHover";
 
 interface ProductCardProps {
   product: Product;
@@ -28,8 +29,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         delay: Math.min(index * 0.03, 0.3),
         ease: EASE_HERO,
       }}
-      className="group relative overflow-hidden rounded-2xl border border-border/50 bg-surface-1 transition-colors hover:border-brand/60"
+      className="group relative overflow-hidden rounded-2xl border border-border/50 bg-surface-1 shadow-[var(--elevation-1)] transition-all duration-300 hover:border-brand/60 hover:shadow-[var(--elevation-hover)]"
     >
+      <span className="sticker-peel" aria-hidden />
+      <TiltOnHover max={5} className="block">
       <Link href={href} className="block focus-visible:outline-none">
         <div className="relative aspect-square overflow-hidden bg-surface-2">
           <Image
@@ -67,6 +70,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
         </div>
       </Link>
+      </TiltOnHover>
     </motion.article>
   );
 }

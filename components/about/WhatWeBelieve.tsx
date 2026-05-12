@@ -1,11 +1,13 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import dynamic from "next/dynamic";
+import { useRef } from "react";
 import { Container } from "@/components/shared/Container";
 import { values } from "@/lib/data/about-content";
 import { EASE_HERO } from "@/lib/animations";
 import { AboutValuesFallback } from "@/components/three/scenes/AboutValuesFallback";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const AboutValuesScene = dynamic(
   () => import("@/components/three/scenes/AboutValuesScene"),
@@ -21,7 +23,7 @@ export function WhatWeBelieve() {
       className="py-24 lg:py-40"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom, oklch(0.92 0.19 103 / 0.04), transparent 15%, transparent 85%, oklch(0.92 0.19 103 / 0.04))",
+          "linear-gradient(to bottom, var(--brand-subtle), transparent 15%, transparent 85%, var(--brand-subtle))",
       }}
     >
       <Container>
@@ -30,9 +32,7 @@ export function WhatWeBelieve() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-brand">
               What we believe
             </p>
-            <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl">
-              Four rules we don&apos;t break.
-            </h2>
+            <ScorchHeading>Four rules we don&apos;t break.</ScorchHeading>
           </div>
 
           <ol className="flex flex-col">
@@ -51,6 +51,39 @@ export function WhatWeBelieve() {
         </div>
       </Container>
     </section>
+  );
+}
+
+function ScorchHeading({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const reduced = useReducedMotion();
+
+  return (
+    <motion.h2
+      ref={ref}
+      initial={reduced ? false : { clipPath: "inset(0 100% 0 0)" }}
+      animate={
+        reduced
+          ? undefined
+          : { clipPath: inView ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)" }
+      }
+      transition={{ duration: 1.05, ease: EASE_HERO, delay: 0.1 }}
+      className="relative mt-4 font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl"
+    >
+      {children}
+      <motion.span
+        aria-hidden
+        initial={reduced ? { opacity: 0 } : { left: "-8%", opacity: 0.9 }}
+        animate={
+          reduced
+            ? { opacity: 0 }
+            : { left: inView ? "104%" : "-8%", opacity: inView ? 0 : 0.9 }
+        }
+        transition={{ duration: 1.05, ease: EASE_HERO, delay: 0.1 }}
+        className="pointer-events-none absolute top-0 bottom-0 w-16 -translate-x-1/2 bg-gradient-to-r from-transparent via-brand/55 to-transparent blur-[6px]"
+      />
+    </motion.h2>
   );
 }
 

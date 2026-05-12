@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/types/product";
 
-// placeholder — replace in Phase 9
-const PH = (id: string) => `https://images.unsplash.com/photo-${id}?w=1200&q=80`;
+const PH = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?w=1200&q=80&auto=format&fit=crop`;
 
 export const products: Product[] = [
   {
@@ -15,7 +15,7 @@ export const products: Product[] = [
       "Ships with a standard E26 lamp base and 3m cord. Bulb not included — we recommend a 40W warm LED for the right glow.",
     ],
     price: 85,
-    images: [PH("1581091870622-1e7e3fbfac08"), PH("1565814329452-e1efa11c5b89")],
+    images: [PH("1755282464678-31862372f805"), PH("1718619578075-13f4f3a41aa1")],
     options: [
       {
         key: "colour",
@@ -43,7 +43,7 @@ export const products: Product[] = [
       "Grippy base with TPU-style corner stoppers so it stays put on glass desks.",
     ],
     price: 25,
-    images: [PH("1512428559087-560fa5ceab42")],
+    images: [PH("1698314440355-eaf5ff14899c")],
     options: [
       {
         key: "colour",
@@ -68,7 +68,7 @@ export const products: Product[] = [
     ],
     price: "quote",
     priceNote: "from $120",
-    images: [PH("1578662996442-48f60103fc96")],
+    images: [PH("1628496863672-901d09c7b324")],
     options: [
       { key: "height", label: "Height", type: "select", values: ["60mm", "90mm", "120mm"], required: true },
       {
@@ -95,7 +95,7 @@ export const products: Product[] = [
       "Threaded inserts available on request.",
     ],
     price: 15,
-    images: [PH("1558618666-fcd25c85cd64")],
+    images: [PH("1595418312726-3beb2f4fe67e")],
     tags: ["PETG", "Repair", "Reverse Engineering"],
     leadTime: "3–5 days",
   },
@@ -110,7 +110,7 @@ export const products: Product[] = [
       "Available in solid colour or dual-colour spine gradient.",
     ],
     price: 40,
-    images: [PH("1611605698323-b1e99cfd37ea")],
+    images: [PH("1618082445556-8b5e4fee89dd")],
     options: [
       {
         key: "colour",
@@ -134,7 +134,7 @@ export const products: Product[] = [
       "Great as a housewarming gift. Send art on WhatsApp or pick one of our studio designs.",
     ],
     price: 40,
-    images: [PH("1565717106-17ad97d9c0eb")],
+    images: [PH("1519645480282-2bcc997ba3b0")],
     options: [
       {
         key: "design",
@@ -165,7 +165,7 @@ export const products: Product[] = [
       "Finished with food-safe mineral oil blend. Hand-wash only.",
     ],
     price: 60,
-    images: [PH("1594736797933-d0501ba2fe65")],
+    images: [PH("1664902275922-9cd136203ba1")],
     options: [
       { key: "wood", label: "Wood", type: "select", values: ["Maple", "Walnut"], required: true },
       {
@@ -190,7 +190,7 @@ export const products: Product[] = [
       "Stand included.",
     ],
     price: 35,
-    images: [PH("1586953208448-b95a79798f07")],
+    images: [PH("1623177579111-ccdec0898ed1")],
     options: [
       { key: "finish", label: "Finish", type: "select", values: ["Clear", "Frosted"], required: true },
       { key: "line1", label: "Line 1 (name)", type: "text", required: true },
@@ -210,7 +210,7 @@ export const products: Product[] = [
       "Perfect for family key organisation or small-team gifting.",
     ],
     price: 25,
-    images: [PH("1603400521630-9f2de124b33b")],
+    images: [PH("1676276550349-580c49631496")],
     options: [
       {
         key: "colour",
@@ -240,7 +240,7 @@ export const products: Product[] = [
       "Ready to hang. D-ring hardware installed.",
     ],
     price: 120,
-    images: [PH("1578320340584-aec62ea79a3a")],
+    images: [PH("1653059959899-70ab4e464401")],
     options: [
       {
         key: "palette",
@@ -265,7 +265,7 @@ export const products: Product[] = [
       "Cork backing to protect your surfaces.",
     ],
     price: 55,
-    images: [PH("1595526114035-0d45ed16cfbf")],
+    images: [PH("1637531645804-ca7c17feea5c")],
     options: [
       {
         key: "palette",
@@ -288,7 +288,7 @@ export const products: Product[] = [
       "A 140mm hexagonal jewellery tray with real dried florals suspended in clear resin. Makes a striking dresser or entryway piece.",
     ],
     price: 45,
-    images: [PH("1617038220319-276d3cfab638")],
+    images: [PH("1639336874819-2b72d2b8457d")],
     options: [
       {
         key: "floral",
@@ -313,7 +313,7 @@ export const products: Product[] = [
     ],
     price: "quote",
     priceNote: "from $90",
-    images: [PH("1615529162924-f8605109d34a")],
+    images: [PH("1745330612784-8482a2a5138f")],
     options: [
       {
         key: "form",
@@ -338,7 +338,7 @@ export const products: Product[] = [
       "Send art on WhatsApp — vector preferred, 300dpi raster acceptable.",
     ],
     price: 30,
-    images: [PH("1503342217505-b0a15ec3261c")],
+    images: [PH("1499971442178-8c10fdf5f6ac")],
     options: [
       { key: "size", label: "Size", type: "select", values: ["S", "M", "L", "XL", "XXL"], required: true },
       {
@@ -371,7 +371,7 @@ export const products: Product[] = [
     ],
     price: "quote",
     priceNote: "from $22/unit at 10+",
-    images: [PH("1618932260643-eee4a2f652a6")],
+    images: [PH("1635274605638-d44babc08a4f")],
     tags: ["Bulk", "Team", "Events"],
     leadTime: "7–10 days",
     isFeatured: true,
@@ -386,7 +386,7 @@ export const products: Product[] = [
       "A 380gsm premium hoodie with your design printed on the front chest and back. Warm, structured, and built to last.",
     ],
     price: 55,
-    images: [PH("1556821840-3a9fbc86339e")],
+    images: [PH("1612978322313-be209301e185")],
     options: [
       { key: "size", label: "Size", type: "select", values: ["S", "M", "L", "XL", "XXL"], required: true },
       {
@@ -410,7 +410,7 @@ export const products: Product[] = [
       "A set of three die-cut weatherproof vinyl decals — your design, up to 200mm on longest side. UV-stable, fade-resistant for 5+ years outdoors.",
     ],
     price: 18,
-    images: [PH("1609205807490-89c0a16b5f62")],
+    images: [PH("1688970462384-9bbafab3204d")],
     options: [
       {
         key: "colour",
@@ -433,7 +433,7 @@ export const products: Product[] = [
       "Five 60–80mm custom stickers in matte vinyl with a laminate topcoat. Scratch-resistant, won't yellow.",
     ],
     price: 15,
-    images: [PH("1517336714731-489689fd1ca8")],
+    images: [PH("1699004642536-b790e3b41f9c")],
     tags: ["Matte Laminate", "Scratch-Resistant"],
     leadTime: "2–3 days",
     isFeatured: true,
@@ -450,7 +450,7 @@ export const products: Product[] = [
     ],
     price: 12,
     priceNote: "per sqft",
-    images: [PH("1558655146-9f40138edfeb")],
+    images: [PH("1715646528734-ed6f3b83d5c4")],
     options: [
       {
         key: "sqft",
@@ -481,7 +481,7 @@ export const products: Product[] = [
     ],
     price: "quote",
     priceNote: "quote by size",
-    images: [PH("1556761175-5973dc0f32e7")],
+    images: [PH("1658545664473-367aca21362a")],
     tags: ["Frosted", "Storefront", "Privacy"],
     leadTime: "5–7 days",
   },

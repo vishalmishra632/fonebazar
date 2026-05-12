@@ -14,7 +14,7 @@ export function ContactRail() {
         className="rounded-3xl border border-border/40 p-6"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom right, oklch(0.62 0.22 285 / 0.12), transparent 70%)",
+            "linear-gradient(to bottom right, oklch(0.80 0.16 92 / 0.12), transparent 70%)",
         }}
       >
         <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-brand">

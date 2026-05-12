@@ -35,7 +35,7 @@ export function FullBleedCTA({
       className="relative overflow-hidden bg-surface-1 py-32 lg:py-48"
       style={{
         backgroundImage:
-          "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.62 0.22 285 / 0.25), transparent 70%)",
+          "radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.80 0.16 92 / 0.25), transparent 70%)",
       }}
     >
       <div

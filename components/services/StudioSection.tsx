@@ -31,7 +31,7 @@ export function StudioSection() {
       className="relative py-24 lg:py-40"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom right, oklch(0.62 0.22 285 / 0.1), transparent 60%), linear-gradient(to top left, oklch(0.62 0.22 285 / 0.05), transparent 50%)",
+          "linear-gradient(to bottom right, var(--brand-subtle), transparent 60%), linear-gradient(to top left, var(--brand-subtle), transparent 50%)",
       }}
     >
       <Container>

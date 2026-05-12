@@ -9,7 +9,7 @@ export function EndOfCatalogCTA() {
       className="relative mt-16 overflow-hidden rounded-3xl border border-border/50 bg-surface-1 px-6 py-14 text-center sm:px-12"
       style={{
         backgroundImage:
-          "radial-gradient(ellipse 60% 70% at 50% 100%, oklch(0.62 0.22 285 / 0.18), transparent 70%)",
+          "radial-gradient(ellipse 60% 70% at 50% 100%, oklch(0.80 0.16 92 / 0.18), transparent 70%)",
       }}
     >
       <p className="text-xs font-medium uppercase tracking-[0.22em] text-brand">

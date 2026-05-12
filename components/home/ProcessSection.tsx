@@ -71,7 +71,7 @@ export function ProcessSection() {
           >
             <motion.path
               d="M 60 10 L 1140 10"
-              stroke="oklch(0.62 0.22 285 / 0.4)"
+              stroke="oklch(0.80 0.16 92 / 0.4)"
               strokeWidth="1.5"
               strokeDasharray="6 6"
               strokeLinecap="round"
@@ -95,7 +95,7 @@ export function ProcessSection() {
                   delay: index * 0.12,
                   ease: EASE_HERO,
                 }}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-border/60 bg-surface-1 p-8 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_0_40px_oklch(0.62_0.22_285/0.2)]"
+                className="group relative flex flex-col gap-4 rounded-2xl border border-border/60 bg-surface-1 p-8 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_0_40px_oklch(0.80_0.16_92/0.2)]"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-display text-5xl font-semibold text-brand/20">

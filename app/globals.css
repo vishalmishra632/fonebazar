@@ -73,36 +73,45 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Studio Lab palette — warm near-black + hi-vis safety yellow, dark-only. */
+/*
+ * Studio Lab palette.
+ * :root = light (clean white + dark amber accent; Apple/Linear clarity)
+ * .dark = warm near-black + hi-vis safety yellow
+ * Shared tokens (radii, motion) live in :root so both themes inherit.
+ * `--brand` is context-aware — hi-vis in dark, dark amber in light — so every
+ * `text-brand` / `bg-brand` usage across the codebase stays WCAG-AA without a sweep.
+ */
 :root {
-  /* Surfaces */
-  --background: oklch(0.11 0.008 65);
-  --foreground: oklch(0.95 0.006 85);
-  --surface-1: oklch(0.14 0.010 65);
-  --surface-2: oklch(0.18 0.012 65);
-  --surface-3: oklch(0.22 0.012 65);
-  --border: oklch(0.28 0.010 65 / 0.55);
-  --muted: oklch(0.62 0.015 65);
-  --muted-foreground: oklch(0.72 0.012 65);
+  color-scheme: light;
 
-  /* Brand — hi-vis safety yellow */
-  --brand: oklch(0.92 0.19 103);
-  --brand-foreground: oklch(0.15 0.01 65);
-  --brand-glow: oklch(0.92 0.19 103 / 0.35);
-  --brand-subtle: oklch(0.92 0.19 103 / 0.10);
-  --brand-strong: oklch(0.88 0.20 100);
+  /* Surfaces — clean near-white */
+  --background: oklch(0.99 0.002 85);
+  --foreground: oklch(0.14 0.008 65);
+  --surface-1: oklch(0.97 0.003 85);
+  --surface-2: oklch(0.94 0.004 85);
+  --surface-3: oklch(0.90 0.006 85);
+  --border: oklch(0.14 0.008 65 / 0.12);
+  --muted: oklch(0.52 0.008 65);
+  --muted-foreground: oklch(0.42 0.010 65);
 
-  /* Ink — warm deep black for yellow-on-yellow surfaces */
+  /* Brand — dark amber reads as rich yellow fill AND as legible accent text on white */
+  --brand: oklch(0.54 0.17 78);
+  --brand-foreground: oklch(0.99 0.003 85);
+  --brand-glow: oklch(0.92 0.19 103 / 0.22);
+  --brand-subtle: oklch(0.54 0.17 78 / 0.10);
+  --brand-strong: oklch(0.48 0.18 75);
+
+  /* Ink — deep warm black */
   --ink: oklch(0.13 0.008 65);
 
   /* Signal */
-  --danger: oklch(0.68 0.20 25);
-  --destructive: oklch(0.68 0.20 25);
-  --signal-running: oklch(0.92 0.19 103);
-  --signal-queued: oklch(0.82 0.15 60);
-  --signal-idle: oklch(0.72 0.10 145);
+  --danger: oklch(0.58 0.22 25);
+  --destructive: oklch(0.58 0.22 25);
+  --signal-running: oklch(0.54 0.17 78);
+  --signal-queued: oklch(0.65 0.16 60);
+  --signal-idle: oklch(0.55 0.12 145);
 
-  /* Shadcn aliases — collapsed to dark-surface defaults */
+  /* Shadcn aliases */
   --card: var(--surface-1);
   --card-foreground: var(--foreground);
   --popover: var(--surface-1);
@@ -113,13 +122,13 @@
   --secondary-foreground: var(--foreground);
   --accent: var(--surface-2);
   --accent-foreground: var(--foreground);
-  --input: oklch(0.28 0.010 65 / 0.8);
+  --input: oklch(0.28 0.010 65 / 0.22);
   --ring: var(--brand);
 
   --chart-1: var(--brand);
-  --chart-2: oklch(0.82 0.15 60);
-  --chart-3: oklch(0.72 0.10 145);
-  --chart-4: oklch(0.68 0.20 25);
+  --chart-2: oklch(0.70 0.16 60);
+  --chart-3: oklch(0.58 0.11 145);
+  --chart-4: oklch(0.58 0.22 25);
   --chart-5: oklch(0.55 0.015 65);
 
   --sidebar: var(--surface-1);
@@ -133,7 +142,6 @@
 
   --radius: 0.75rem;
 
-  /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-back: cubic-bezier(0.22, 1.2, 0.36, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
@@ -142,8 +150,76 @@
   --dur-hero: 900ms;
   --dur-curtain: 800ms;
 
-  /* Grain */
-  --grain-opacity: 0.04;
+  /* Craft-layer tokens */
+  --grain-opacity: 0.05;
+  --grid-line: oklch(0.14 0.008 65 / 0.05);
+  --grid-major: oklch(0.14 0.008 65 / 0.08);
+  --halftone-dot: oklch(0.14 0.008 65 / 0.5);
+  --halftone-opacity: 0.05;
+  --layer-line: oklch(0.14 0.008 65 / 0.04);
+  --reg-mark: oklch(0.54 0.17 78 / 0.6);
+
+  /* Ambient amber (light-mode fallback — lower saturation on white) */
+  --amber-glow: oklch(0.68 0.14 70 / 0.12);
+  --amber-subtle: oklch(0.68 0.14 70 / 0.04);
+
+  /* Surface elevation — shared between themes, alpha on deep ink */
+  --elevation-1: 0 1px 2px oklch(0.07 0.010 55 / 0.18);
+  --elevation-2: 0 4px 14px oklch(0.07 0.010 55 / 0.22);
+  --elevation-3: 0 10px 34px oklch(0.07 0.010 55 / 0.30);
+  --elevation-hover: 0 14px 42px oklch(0.07 0.010 55 / 0.34);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Warm Luxury Craft — deep espresso + golden leaf + champagne cream.
+     Shifts away from electric-tech yellow toward precious-metal warmth. */
+
+  /* Surfaces — deep warm espresso */
+  --background: oklch(0.09 0.010 55);
+  --foreground: oklch(0.96 0.012 85);
+  --surface-1: oklch(0.13 0.014 55);
+  --surface-2: oklch(0.17 0.016 55);
+  --surface-3: oklch(0.21 0.016 55);
+  --border: oklch(0.30 0.012 55 / 0.5);
+  --muted: oklch(0.60 0.014 60);
+  --muted-foreground: oklch(0.74 0.013 62);
+
+  /* Brand — golden leaf (softer than safety yellow, still unmistakable) */
+  --brand: oklch(0.88 0.17 97);
+  --brand-foreground: oklch(0.11 0.010 55);
+  --brand-glow: oklch(0.88 0.17 97 / 0.30);
+  --brand-subtle: oklch(0.88 0.17 97 / 0.10);
+  --brand-strong: oklch(0.83 0.18 95);
+
+  /* Ambient — warm amber for hero radial glows */
+  --amber-glow: oklch(0.72 0.17 70 / 0.32);
+  --amber-subtle: oklch(0.72 0.17 70 / 0.06);
+
+  --ink: oklch(0.07 0.010 55);
+
+  --danger: oklch(0.68 0.20 25);
+  --destructive: oklch(0.68 0.20 25);
+  --signal-running: oklch(0.88 0.17 97);
+  --signal-queued: oklch(0.78 0.15 55);
+  --signal-idle: oklch(0.72 0.10 145);
+
+  --input: oklch(0.30 0.012 55 / 0.8);
+
+  /* Elevation — deeper shadows on dark bg */
+  --elevation-1: 0 1px 2px oklch(0 0 0 / 0.45);
+  --elevation-2: 0 4px 14px oklch(0 0 0 / 0.5);
+  --elevation-3: 0 10px 34px oklch(0 0 0 / 0.6);
+  --elevation-hover: 0 14px 42px oklch(0 0 0 / 0.65);
+
+  --grain-opacity: 0.05;
+  --grid-line: oklch(0.88 0.17 97 / 0.03);
+  --grid-major: oklch(0.88 0.17 97 / 0.05);
+  --halftone-dot: oklch(0.96 0.012 85 / 0.6);
+  --halftone-opacity: 0.035;
+  --layer-line: oklch(0.88 0.17 97 / 0.06);
+  --reg-mark: oklch(0.88 0.17 97 / 0.6);
 }
 
 @layer base {
@@ -313,3 +389,145 @@
     cursor: none;
   }
 }
+
+/* ─────────── Craft overlays ─────────── */
+
+/* 3D-printing build-plate grid for the home hero. Fine 16px lines +
+   every-4th 64px major line, giving the read of a print bed / CNC table. */
+.build-plate {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px);
+  background-size:
+    16px 16px,
+    16px 16px,
+    64px 64px,
+    64px 64px;
+}
+
+/* T-shirt printing halftone — subtle dotted bed behind the store hero. */
+.halftone-bg {
+  background-image: radial-gradient(circle, var(--halftone-dot) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  opacity: var(--halftone-opacity);
+}
+
+/* Decal registration crosshair — four tiny plus-signs at the corners. */
+.reg-marks::before,
+.reg-marks::after,
+.reg-marks > .reg-mark-bl,
+.reg-marks > .reg-mark-br {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-image:
+    linear-gradient(var(--reg-mark), var(--reg-mark)),
+    linear-gradient(var(--reg-mark), var(--reg-mark));
+  background-size: 10px 1px, 1px 10px;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.reg-marks::before { top: 6px; left: 6px; }
+.reg-marks::after { top: 6px; right: 6px; }
+.reg-marks > .reg-mark-bl { bottom: 6px; left: 6px; }
+.reg-marks > .reg-mark-br { bottom: 6px; right: 6px; }
+.reg-marks:hover::before,
+.reg-marks:hover::after,
+.reg-marks:hover > .reg-mark-bl,
+.reg-marks:hover > .reg-mark-br,
+.reg-marks[data-active="true"]::before,
+.reg-marks[data-active="true"]::after,
+.reg-marks[data-active="true"] > .reg-mark-bl,
+.reg-marks[data-active="true"] > .reg-mark-br {
+  opacity: 1;
+}
+
+/* Sticker peel corner — simulates a die-cut vinyl decal lifting on hover. */
+.sticker-peel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--surface-2);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  transform-origin: 100% 0;
+  transform: rotate(0deg) scale(0.6);
+  opacity: 0;
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 200ms ease-out;
+  box-shadow: -2px 3px 6px oklch(0.14 0.008 65 / 0.18);
+  pointer-events: none;
+}
+.group:hover .sticker-peel {
+  transform: rotate(-14deg) scale(1);
+  opacity: 1;
+}
+
+/* Laser scorch-swipe — the yellow heat band wipes L→R across a headline. */
+@keyframes laser-scorch {
+  0% {
+    -webkit-mask-image: linear-gradient(90deg, #000 -10%, #000 -10%, transparent -10%);
+            mask-image: linear-gradient(90deg, #000 -10%, #000 -10%, transparent -10%);
+  }
+  100% {
+    -webkit-mask-image: linear-gradient(90deg, #000 110%, #000 110%, transparent 110%);
+            mask-image: linear-gradient(90deg, #000 110%, #000 110%, transparent 110%);
+  }
+}
+
+/* Pour-line divider — a thin hairline that ends in a droplet. */
+.pour-divider {
+  display: block;
+  margin: 3rem auto;
+  width: 2px;
+  height: 72px;
+  position: relative;
+  color: var(--border);
+}
+.pour-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: calc(100% - 12px);
+  background: currentColor;
+}
+.pour-divider::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--brand);
+  opacity: 0.75;
+}
+
+/* Reduced-motion kills the decorative surface-level animations. */
+@media (prefers-reduced-motion: reduce) {
+  .sticker-peel { transition: none; }
+  .group:hover .sticker-peel { transform: none; opacity: 0.4; }
+}
+
+/* Candlelit workshop — warm radial glows behind hero sections. */
+.ambient-warm {
+  background-image:
+    radial-gradient(ellipse 60% 50% at 20% 30%, var(--amber-glow), transparent 62%),
+    radial-gradient(ellipse 45% 35% at 80% 85%, var(--brand-subtle), transparent 72%);
+}
+
+/* Elevation utilities — use in place of ad-hoc shadow-[...] classes. */
+.elev-1 { box-shadow: var(--elevation-1); }
+.elev-2 { box-shadow: var(--elevation-2); }
+.elev-3 { box-shadow: var(--elevation-3); }
+.elev-hover { box-shadow: var(--elevation-hover); }

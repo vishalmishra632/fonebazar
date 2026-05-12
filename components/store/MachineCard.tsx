@@ -43,8 +43,10 @@ export function MachineCard({ machine, index }: MachineCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-      className="group overflow-hidden rounded-2xl border border-border/40 bg-surface-1"
+      className="reg-marks group relative overflow-hidden rounded-2xl border border-border/40 bg-surface-1 transition-colors hover:border-brand/50"
     >
+      <span className="reg-mark-bl" aria-hidden />
+      <span className="reg-mark-br" aria-hidden />
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={machine.image}

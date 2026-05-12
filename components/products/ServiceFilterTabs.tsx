@@ -44,11 +44,14 @@ export function ServiceFilterTabs() {
               )}
             >
               {active ? (
-                <motion.span
-                  layoutId="filter-pill"
-                  className="absolute inset-0 rounded-full bg-brand"
-                  transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                />
+                <>
+                  <motion.span
+                    layoutId="filter-pill"
+                    className="absolute inset-0 rounded-full bg-brand"
+                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                  />
+                  <CrosshairCorners />
+                </>
               ) : null}
               <span className="relative">{tab.label}</span>
             </Link>
@@ -56,5 +59,25 @@ export function ServiceFilterTabs() {
         })}
       </div>
     </nav>
+  );
+}
+
+function CrosshairCorners() {
+  const corners = ["top-1 left-1", "top-1 right-1", "bottom-1 left-1", "bottom-1 right-1"];
+  return (
+    <>
+      {corners.map((pos) => (
+        <span
+          key={pos}
+          aria-hidden
+          className={cn(
+            "absolute h-1.5 w-1.5 text-brand-foreground/70 select-none font-mono text-[8px] leading-none",
+            pos,
+          )}
+        >
+          +
+        </span>
+      ))}
+    </>
   );
 }

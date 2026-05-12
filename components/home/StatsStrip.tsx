@@ -18,7 +18,7 @@ export function StatsStrip() {
       className="relative overflow-hidden py-20 lg:py-24"
       style={{
         background:
-          "linear-gradient(to bottom right, oklch(0.62 0.22 285 / 0.08), transparent 40%), linear-gradient(to top left, oklch(0.62 0.22 285 / 0.05), transparent 50%)",
+          "linear-gradient(to bottom right, oklch(0.80 0.16 92 / 0.08), transparent 40%), linear-gradient(to top left, oklch(0.80 0.16 92 / 0.05), transparent 50%)",
       }}
     >
       <Container>

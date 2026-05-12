@@ -4,7 +4,7 @@ import { Float, MeshDistortMaterial } from "@react-three/drei";
 import type { Texture } from "three";
 import { SceneCanvas } from "@/components/three/SceneCanvas";
 import { MouseParallax } from "@/components/three/primitives/MouseCamera";
-import { useMatcap } from "@/components/three/primitives/Matcap";
+import { useThemedMatcaps } from "@/hooks/use-themed-matcaps";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -51,14 +51,22 @@ function LaserBeam({ reduced, matcap }: { reduced: boolean; matcap: Texture }) {
   );
 }
 
-function ResinBlob({ reduced, mobile }: { reduced: boolean; mobile: boolean }) {
+function ResinBlob({
+  reduced,
+  mobile,
+  color,
+}: {
+  reduced: boolean;
+  mobile: boolean;
+  color: string;
+}) {
   if (mobile) return null;
   return (
     <Float speed={reduced ? 0 : 0.9} floatIntensity={reduced ? 0 : 0.5} position={[1.4, -0.5, 0.5]}>
       <mesh>
         <sphereGeometry args={[0.6, 32, 32]} />
         <MeshDistortMaterial
-          color="#F4E400"
+          color={color}
           distort={reduced ? 0.25 : 0.55}
           speed={reduced ? 0 : 1.6}
           roughness={0.45}
@@ -95,17 +103,16 @@ function VinylRoller({ reduced, matcap, mobile }: { reduced: boolean; matcap: Te
 function SceneContent() {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
-  const yellow = useMatcap("yellow");
-  const bone = useMatcap("bone");
+  const { primary, accentA, primaryColor } = useThemedMatcaps();
 
   return (
     <MouseParallax strength={isMobile ? 0 : 0.4} disabled={isMobile || reduced}>
-      <FdmStack reduced={reduced} matcap={yellow} />
-      <SlaPillar reduced={reduced} matcap={bone} />
-      <LaserBeam reduced={reduced} matcap={yellow} />
-      <ResinBlob reduced={reduced} mobile={isMobile} />
-      <HeatPress reduced={reduced} matcap={bone} />
-      <VinylRoller reduced={reduced} matcap={yellow} mobile={isMobile} />
+      <FdmStack reduced={reduced} matcap={primary} />
+      <SlaPillar reduced={reduced} matcap={accentA} />
+      <LaserBeam reduced={reduced} matcap={primary} />
+      <ResinBlob reduced={reduced} mobile={isMobile} color={primaryColor} />
+      <HeatPress reduced={reduced} matcap={accentA} />
+      <VinylRoller reduced={reduced} matcap={primary} mobile={isMobile} />
     </MouseParallax>
   );
 }

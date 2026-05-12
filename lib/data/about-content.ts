@@ -50,9 +50,8 @@ export const studioLetter: readonly string[] = [
 // TODO: replace with owner name + role once confirmed with client
 export const studioSignature = "— fonebazar studio";
 
-// placeholder — replace in Phase 9
 export const studioImage =
-  "https://images.unsplash.com/photo-1581091870622-1e7e3fbfac08?w=1400&q=80";
+  "https://images.unsplash.com/photo-1536311820367-a38e1846ad14?w=1600&q=80&auto=format&fit=crop";
 
 export type AudienceIcon = "Home" | "Briefcase" | "Heart" | "Trophy" | "Wrench";
 

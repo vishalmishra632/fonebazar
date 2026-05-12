@@ -34,6 +34,10 @@ export function StoreHero() {
     <section className="relative overflow-hidden pt-28 pb-12 lg:pt-40 lg:pb-16">
       <div
         aria-hidden
+        className="halftone-bg pointer-events-none absolute inset-0 -z-20"
+      />
+      <div
+        aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-70"
       >
         <StoreMachinesScene />

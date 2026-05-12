@@ -5,14 +5,14 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useLenis } from "lenis/react";
 import { Container } from "@/components/shared/Container";
-import { Magnetic } from "@/components/animations/Magnetic";
+import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Em } from "@/components/shared/ItalicEmphasis";
 import { HomeHeroFallback } from "@/components/three/scenes/HomeHeroFallback";
 import { buildWhatsAppOrderURL } from "@/lib/whatsapp";
 import { EASE_HERO } from "@/lib/animations";
 
-const HomeHeroScene = dynamic(
-  () => import("@/components/three/scenes/HomeHeroScene"),
+const TshirtsHeroScene = dynamic(
+  () => import("@/components/three/scenes/TshirtsHeroScene"),
   { ssr: false, loading: () => <HomeHeroFallback /> },
 );
 
@@ -54,17 +54,13 @@ export function HeroSection() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_55%_at_30%_50%,black,transparent)]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, oklch(0.22 0.010 65 / 0.5) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.22 0.010 65 / 0.5) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
+        className="ambient-warm pointer-events-none absolute inset-0 -z-20"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-[10%] top-[28%] -z-10 h-[620px] w-[620px] rounded-full bg-brand-glow blur-[140px]"
+        className="build-plate pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_72%_58%_at_30%_52%,black,transparent)]"
       />
+      <BuildPlateRegistrationMarks />
 
       <Container className="relative">
         <motion.div
@@ -114,16 +110,16 @@ export function HeroSection() {
                 transition={{ delay: 1.1, duration: 0.6, ease: EASE_HERO }}
                 className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
               >
-                <Magnetic strength={0.3}>
+                <MagneticButton strength={0.3} radius={100}>
                   <button
                     type="button"
                     onClick={scrollToServices}
-                    className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-medium text-brand-foreground transition hover:bg-brand-strong focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                    className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-medium text-brand-foreground shadow-[var(--elevation-2)] transition hover:bg-brand-strong hover:shadow-[var(--elevation-hover)] focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 focus-visible:ring-offset-background"
                   >
                     Browse services
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
-                </Magnetic>
+                </MagneticButton>
                 <a
                   href={whatsappHref}
                   target="_blank"
@@ -136,11 +132,11 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            <div
-              aria-hidden
-              className="relative col-span-12 hidden h-[360px] lg:col-span-5 lg:block"
-            >
-              <HomeHeroScene />
+            <div className="relative col-span-12 hidden h-[420px] lg:col-span-5 lg:block">
+              <TshirtsHeroScene />
+              <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-medium uppercase tracking-[0.28em] text-muted-foreground">
+                Drag to rotate
+              </span>
             </div>
           </div>
         </motion.div>
@@ -166,6 +162,28 @@ export function HeroSection() {
         </span>
       </motion.div>
     </section>
+  );
+}
+
+function BuildPlateRegistrationMarks() {
+  const positions = [
+    { top: "18%", left: "12%" },
+    { top: "18%", right: "12%" },
+    { bottom: "22%", left: "12%" },
+    { bottom: "22%", right: "12%" },
+  ] as const;
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
+      {positions.map((pos, i) => (
+        <span
+          key={i}
+          className="absolute text-brand/60 font-mono text-xs select-none"
+          style={pos}
+        >
+          +
+        </span>
+      ))}
+    </div>
   );
 }
 
