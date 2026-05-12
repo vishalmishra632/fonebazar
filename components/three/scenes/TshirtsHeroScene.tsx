@@ -21,22 +21,37 @@ interface ShirtPalette {
   sheen: string;
 }
 
+const HERO_FIT_SIZE = 2.0;
+
 function ClothShirt({ palette }: { palette: ShirtPalette }) {
   const { scene } = useGLTF(MODEL_URL);
 
-  // Clone so different palettes (light/dark mode) don't fight over the same
-  // shared scene graph. Material override re-runs whenever palette changes.
-  const cloned = useMemo(() => scene.clone(true), [scene]);
+  // Box3 auto-fit — same pattern as CraftSpecimen. Computes the bounding
+  // box, scales the source mesh so its longest dimension matches HERO_FIT_SIZE,
+  // and re-centres the wrapped group at origin. The camera setup below gives
+  // ~30% margin so nothing crops mid-rotation.
+  const fitted = useMemo(() => {
+    const cloned = scene.clone(true);
+    const box = new THREE.Box3().setFromObject(cloned);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z) || 1;
+    const scale = HERO_FIT_SIZE / maxDim;
+    const group = new THREE.Group();
+    cloned.position.copy(center.multiplyScalar(-1));
+    group.add(cloned);
+    group.scale.setScalar(scale);
+    return group;
+  }, [scene]);
 
   useEffect(() => {
-    cloned.traverse((child) => {
+    fitted.traverse((child) => {
       if (!(child instanceof THREE.Mesh)) return;
       const original = child.material as THREE.MeshStandardMaterial;
       child.castShadow = true;
       child.receiveShadow = true;
       child.material = new THREE.MeshPhysicalMaterial({
         color: palette.body,
-        // Pull the cloth wrinkles + sleeve / hem AO out of the baked maps.
         normalMap: original?.normalMap ?? null,
         aoMap: original?.aoMap ?? null,
         aoMapIntensity: 1.1,
@@ -49,9 +64,9 @@ function ClothShirt({ palette }: { palette: ShirtPalette }) {
         clearcoatRoughness: 0.9,
       });
     });
-  }, [cloned, palette]);
+  }, [fitted, palette]);
 
-  return <primitive object={cloned} scale={2.4} position={[0, -1.3, 0]} />;
+  return <primitive object={fitted} />;
 }
 
 useGLTF.preload(MODEL_URL);
@@ -93,9 +108,14 @@ function SceneContent() {
   );
 }
 
+// Camera sized so HERO_FIT_SIZE (2.0) occupies ~70% of the visible extent.
+// Visible vertical extent ≈ 2 * cameraZ * tan(fov/2). At z=4.4, fov=36° that's
+// ~2.86 units — fitSize 2.0 fills the frame with comfortable margin so the
+// model never crops, even when the OrbitControls swing the wider profile
+// (sleeves, hem) into view.
 export default function TshirtsHeroScene() {
   return (
-    <SceneCanvas cameraPosition={[0, 0.2, 3.8]} cameraFov={36}>
+    <SceneCanvas cameraPosition={[0, 0, 4.4]} cameraFov={36}>
       <SceneContent />
     </SceneCanvas>
   );
