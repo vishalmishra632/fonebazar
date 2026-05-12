@@ -32,22 +32,26 @@ interface SpecimenConfig {
   recolorSheen?: string;
 }
 
+// Sizing math: at fov=36 the visible vertical extent equals
+// 2 * cameraZ * tan(18°) ≈ 0.65 * cameraZ. We pick fitSize ~55% of that
+// so each model has comfortable margin even when its widest profile rotates
+// into view (a printer seen from the side spans more than seen front-on).
 const SPECIMENS: SpecimenConfig[] = [
   {
     model: "/models/printer.glb",
     title: "3D Printing",
     blurb: "FDM + SLA, side by side. Phone stands to figurines.",
     service: "01",
-    fitSize: 3.0,
-    cameraZ: 4.4,
+    fitSize: 1.9,
+    cameraZ: 5.2,
   },
   {
     model: "/models/tshirt.glb",
     title: "Custom Tees",
     blurb: "DTG + heat-press vinyl. Singles or team kits.",
     service: "04",
-    fitSize: 3.2,
-    cameraZ: 4.2,
+    fitSize: 2.0,
+    cameraZ: 5.0,
     recolorBody: "#C89938",
     recolorSheen: "#F0D690",
   },
@@ -56,8 +60,8 @@ const SPECIMENS: SpecimenConfig[] = [
     title: "Resin Art",
     blurb: "Hand-poured wall pieces, coasters, keepsakes.",
     service: "03",
-    fitSize: 3.0,
-    cameraZ: 4.4,
+    fitSize: 1.9,
+    cameraZ: 5.2,
   },
 ];
 
