@@ -1,7 +1,8 @@
 "use client";
 
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { useEffect, useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { SceneCanvas } from "@/components/three/SceneCanvas";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
@@ -22,9 +23,38 @@ interface ShirtPalette {
 }
 
 const HERO_FIT_SIZE = 2.0;
+// How much of the hero we want to traverse before the t-shirt has done a full
+// 360. Roughly one viewport — by the time the user has scrolled past the
+// hero, they've seen the back design without lifting a finger.
+const SCROLL_FULL_TURN_PX = 700;
 
 function ClothShirt({ palette }: { palette: ShirtPalette }) {
   const { scene } = useGLTF(MODEL_URL);
+  const reduced = useReducedMotion();
+  const groupRef = useRef<THREE.Group>(null);
+  const targetRotationRef = useRef(0);
+
+  // Track window scroll and convert to a target rotation. We rotate the
+  // wrapping group, not the camera — OrbitControls keeps its independent
+  // drag affordance on top of this.
+  useEffect(() => {
+    if (reduced) return;
+    function onScroll() {
+      const scrollY = window.scrollY || 0;
+      targetRotationRef.current =
+        (scrollY / SCROLL_FULL_TURN_PX) * Math.PI * 2;
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [reduced]);
+
+  useFrame(() => {
+    if (!groupRef.current || reduced) return;
+    // Critically damped lerp — feels smooth without lagging too far behind.
+    groupRef.current.rotation.y +=
+      (targetRotationRef.current - groupRef.current.rotation.y) * 0.08;
+  });
 
   // Box3 auto-fit — same pattern as CraftSpecimen. Computes the bounding
   // box, scales the source mesh so its longest dimension matches HERO_FIT_SIZE,
@@ -66,7 +96,11 @@ function ClothShirt({ palette }: { palette: ShirtPalette }) {
     });
   }, [fitted, palette]);
 
-  return <primitive object={fitted} />;
+  return (
+    <group ref={groupRef}>
+      <primitive object={fitted} />
+    </group>
+  );
 }
 
 useGLTF.preload(MODEL_URL);
@@ -91,6 +125,9 @@ function SceneContent() {
 
       <ClothShirt palette={palette} />
 
+      {/* Scroll drives the shirt's rotation (see ClothShirt useFrame).
+          OrbitControls keeps user drag as a layer on top — autoRotate off
+          because scroll handles continuous motion now. */}
       <OrbitControls
         makeDefault
         enableZoom={false}
@@ -98,8 +135,7 @@ function SceneContent() {
         enableDamping
         dampingFactor={0.08}
         rotateSpeed={0.85}
-        autoRotate={!reduced}
-        autoRotateSpeed={0.55}
+        autoRotate={false}
         minPolarAngle={Math.PI / 2.4}
         maxPolarAngle={Math.PI / 1.7}
         target={[0, 0, 0]}

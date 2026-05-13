@@ -5,7 +5,13 @@ import { useRef, type ReactNode } from "react";
 import { EASE_HERO } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
-type RevealVariant = "rise" | "unblur" | "split" | "cascade" | "curtain";
+type RevealVariant =
+  | "rise"
+  | "unblur"
+  | "split"
+  | "cascade"
+  | "curtain"
+  | "layer";
 
 interface RevealOnScrollProps {
   children: ReactNode;
@@ -103,6 +109,36 @@ export function RevealOnScroll({
           {children}
         </Component>
       );
+    case "layer": {
+      // Bottom-to-top print-head reveal — text emerges in layers, a thin
+      // glowing print-head line tracks the leading edge as it goes.
+      const layerTransition = { ...base, duration: 1.05 };
+      return (
+        <Component
+          ref={ref}
+          className={cn("relative inline-block", className)}
+        >
+          <motion.span
+            className="block"
+            initial={{ clipPath: "inset(100% 0 0 0)" }}
+            animate={inView ? { clipPath: "inset(0% 0 0 0)" } : undefined}
+            transition={layerTransition}
+          >
+            {children}
+          </motion.span>
+          <motion.span
+            aria-hidden
+            initial={{ top: "100%", opacity: 0.85 }}
+            animate={inView ? { top: "-4%", opacity: 0 } : undefined}
+            transition={layerTransition}
+            className="pointer-events-none absolute inset-x-0 h-[2px] bg-brand"
+            style={{
+              boxShadow: "0 0 14px var(--brand), 0 0 6px var(--brand)",
+            }}
+          />
+        </Component>
+      );
+    }
     case "rise":
     default:
       return (

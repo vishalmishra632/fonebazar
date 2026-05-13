@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { MessageCircle, Package, Search, ShoppingBag, type LucideIcon } from "lucide-react";
 import { Container } from "@/components/shared/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { EASE_HERO } from "@/lib/animations";
 
 interface ProcessStep {
@@ -53,9 +54,13 @@ export function ProcessSection() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-brand">
               How it works
             </p>
-            <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl">
+            <RevealOnScroll
+              as="h2"
+              variant="layer"
+              className="mt-4 font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl"
+            >
               Four steps. Zero friction.
-            </h2>
+            </RevealOnScroll>
             <p className="mt-4 text-lg text-muted-foreground">
               No accounts, no card forms, no guessing.
             </p>

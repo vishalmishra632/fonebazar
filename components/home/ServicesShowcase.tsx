@@ -9,6 +9,8 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/shared/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { CADMeasurementOverlay } from "@/components/shared/CADMeasurementOverlay";
 import { servicesShowcase } from "@/lib/data/services-content";
 import { servicesDetail } from "@/lib/data/services-detail";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
@@ -87,9 +89,13 @@ export function ServicesShowcase() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-brand">
               Our services
             </p>
-            <h2 className="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl lg:text-6xl">
+            <RevealOnScroll
+              as="h2"
+              variant="layer"
+              className="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl lg:text-6xl"
+            >
               Five crafts. One studio.
-            </h2>
+            </RevealOnScroll>
             <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
               From digital file to finished object, every craft runs out of the same
               studio — so the details stay consistent across what you order.
@@ -200,6 +206,10 @@ function ServicePanel({ service, stacked }: ServicePanelProps) {
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-gradient-to-br from-background/10 via-transparent to-background/30"
+          />
+          <CADMeasurementOverlay
+            width="01:01"
+            label={`SPEC.${service.number}`}
           />
           <div
             aria-hidden

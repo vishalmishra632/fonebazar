@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { useRef, type MouseEvent } from "react";
 import { Container } from "@/components/shared/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { featuredWork, type FeaturedWorkItem } from "@/lib/data/images/home";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { EASE_HERO } from "@/lib/animations";
@@ -22,9 +23,13 @@ export function FeaturedWork() {
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-brand">
                 Recent work
               </p>
-              <h2 className="mt-4 font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl">
+              <RevealOnScroll
+                as="h2"
+                variant="layer"
+                className="mt-4 font-display text-4xl font-semibold tracking-[-0.02em] md:text-5xl"
+              >
                 A few things we&apos;ve made lately.
-              </h2>
+              </RevealOnScroll>
             </div>
             <Link
               href="/products"
