@@ -34,7 +34,7 @@ export function InsideTheStudio() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-brand/20 lg:aspect-[4/5]">
               <Image
                 src={studioImage}
-                alt="The fonebazar studio in Sault Ste. Marie"
+                alt="The fonebazaar studio in Sault Ste. Marie"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"

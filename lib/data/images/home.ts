@@ -51,7 +51,7 @@ export const featuredWork: readonly FeaturedWorkItem[] = [
   },
   {
     src: U("1764115424769-ebdd2683d5a8", 1800),
-    alt: "Moody wide-angle shot of the fonebazar studio with machines running",
+    alt: "Moody wide-angle shot of the fonebazaar studio with machines running",
     title: "Studio at Work",
     service: "Behind the Scenes",
     cols: 4,

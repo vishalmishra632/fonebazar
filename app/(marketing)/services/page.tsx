@@ -18,16 +18,16 @@ import {
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Our Craft — fonebazar | 3D Printing, Laser, Resin, Tees, Decals",
+      "Our Craft — fonebazaar | 3D Printing, Laser, Resin, Tees, Decals",
   },
   description:
-    "A real workshop in Sault Ste. Marie running five crafts side-by-side. See materials, capabilities, process, and lead times across all fonebazar services.",
-  alternates: { canonical: "https://fonebazar.ca/services" },
+    "A real workshop in Sault Ste. Marie running five crafts side-by-side. See materials, capabilities, process, and lead times across all fonebazaar services.",
+  alternates: { canonical: "https://fonebazaar.ca/services" },
   openGraph: {
-    title: "Our Craft — fonebazar",
+    title: "Our Craft — fonebazaar",
     description:
       "Five crafts under one roof. A real workshop in Sault Ste. Marie.",
-    url: "https://fonebazar.ca/services",
+    url: "https://fonebazaar.ca/services",
     type: "website",
   },
 };

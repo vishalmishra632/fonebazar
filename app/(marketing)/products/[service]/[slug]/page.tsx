@@ -30,16 +30,16 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const product = getProductBySlug(service, slug);
   if (!product) return {};
   return {
-    title: `${product.name} — fonebazar`,
+    title: `${product.name} — fonebazaar`,
     description: product.shortDescription,
     openGraph: {
-      title: `${product.name} — fonebazar`,
+      title: `${product.name} — fonebazaar`,
       description: product.shortDescription,
       images: product.images,
       type: "website",
     },
     alternates: {
-      canonical: `https://fonebazar.ca/products/${product.service}/${product.slug}`,
+      canonical: `https://fonebazaar.ca/products/${product.service}/${product.slug}`,
     },
   };
 }
@@ -58,14 +58,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     name: product.name,
     description: product.shortDescription,
     image: product.images,
-    brand: { "@type": "Brand", name: "fonebazar" },
+    brand: { "@type": "Brand", name: "fonebazaar" },
     ...(product.price !== "quote" && {
       offers: {
         "@type": "Offer",
         priceCurrency: "CAD",
         price: product.price,
         availability: "https://schema.org/InStock",
-        url: `https://fonebazar.ca/products/${product.service}/${product.slug}`,
+        url: `https://fonebazaar.ca/products/${product.service}/${product.slug}`,
       },
     }),
   };

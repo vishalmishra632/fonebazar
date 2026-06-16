@@ -35,7 +35,7 @@ export function Footer() {
             href="/"
             className="flex items-baseline gap-1 font-display text-2xl font-semibold lowercase"
           >
-            fonebazar
+            fonebazaar
             <span aria-hidden className="ml-0.5 h-2 w-2 rounded-full bg-brand" />
           </Link>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">

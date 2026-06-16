@@ -11,16 +11,16 @@ import { aboutJsonLd, escapeJsonLd } from "@/lib/seo/structured-data";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "About — fonebazar | Small studio, five machines, one standard.",
+    absolute: "About — fonebazaar | Small studio, five machines, one standard.",
   },
   description:
     "A small workshop in Sault Ste. Marie running five crafts side-by-side. Our values, our origin, and how to get in touch.",
-  alternates: { canonical: "https://fonebazar.ca/about" },
+  alternates: { canonical: "https://fonebazaar.ca/about" },
   openGraph: {
-    title: "About fonebazar",
+    title: "About fonebazaar",
     description:
       "A small workshop in Sault Ste. Marie. Five crafts, one standard.",
-    url: "https://fonebazar.ca/about",
+    url: "https://fonebazaar.ca/about",
     type: "website",
   },
 };

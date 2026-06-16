@@ -15,7 +15,7 @@ export function ServicesIntro() {
           transition={{ duration: 0.8, ease: EASE_HERO }}
           className="mx-auto max-w-3xl text-center text-xl leading-relaxed text-muted-foreground md:text-[22px]"
         >
-          fonebazar started as a single 3D printer in a spare room. Four years later
+          fonebazaar started as a single 3D printer in a spare room. Four years later
           we run five crafts side-by-side — and that was on purpose. Most local shops
           do one thing. We do five so that when an idea crosses disciplines — a
           wedding gift that needs both engraved wood and a custom-printed centerpiece,

@@ -13,16 +13,16 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Contact — fonebazar | Sault Ste. Marie Creative Studio",
+    absolute: "Contact — fonebazaar | Sault Ste. Marie Creative Studio",
   },
   description:
-    "Get in touch with fonebazar. WhatsApp, email, or send a project brief via our form. We reply within the hour during studio hours.",
-  alternates: { canonical: "https://fonebazar.ca/contact" },
+    "Get in touch with fonebazaar. WhatsApp, email, or send a project brief via our form. We reply within the hour during studio hours.",
+  alternates: { canonical: "https://fonebazaar.ca/contact" },
   openGraph: {
-    title: "Contact fonebazar",
+    title: "Contact fonebazaar",
     description:
       "Message, email, or stop by our studio in Sault Ste. Marie.",
-    url: "https://fonebazar.ca/contact",
+    url: "https://fonebazaar.ca/contact",
     type: "website",
   },
 };

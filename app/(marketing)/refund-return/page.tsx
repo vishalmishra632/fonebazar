@@ -5,16 +5,16 @@ import { escapeJsonLd, legalJsonLd } from "@/lib/seo/structured-data";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Refund & Return Policy — fonebazar",
+    absolute: "Refund & Return Policy — fonebazaar",
   },
   description:
-    "How refunds, remakes, shipping-damage claims, and cancellations work at fonebazar. Plain language, no legalese.",
-  alternates: { canonical: "https://fonebazar.ca/refund-return" },
+    "How refunds, remakes, shipping-damage claims, and cancellations work at fonebazaar. Plain language, no legalese.",
+  alternates: { canonical: "https://fonebazaar.ca/refund-return" },
   openGraph: {
-    title: "Refund & Return Policy — fonebazar",
+    title: "Refund & Return Policy — fonebazaar",
     description:
-      "How refunds, remakes, shipping-damage claims, and cancellations work at fonebazar.",
-    url: "https://fonebazar.ca/refund-return",
+      "How refunds, remakes, shipping-damage claims, and cancellations work at fonebazaar.",
+    url: "https://fonebazaar.ca/refund-return",
     type: "website",
   },
 };

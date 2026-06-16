@@ -47,7 +47,7 @@ export function buildWhatsAppOrderURL(items: CartItem[]): string {
 
 export function buildWhatsAppVisitURL(): string {
   return buildWhatsAppURL(
-    "Hi fonebazar, I'd like to book a studio visit. My preferred day and time: ",
+    "Hi fonebazaar, I'd like to book a studio visit. My preferred day and time: ",
   );
 }
 

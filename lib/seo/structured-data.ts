@@ -60,7 +60,7 @@ export const homeJsonLd = {
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "fonebazar services",
+    name: "fonebazaar services",
     itemListElement: siteConfig.services.map((service, index) => ({
       "@type": "Offer",
       position: index + 1,
@@ -121,7 +121,7 @@ export const servicesFaqJsonLd = {
 export const aboutJsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "About fonebazar",
+  name: "About fonebazaar",
   url: `${siteConfig.url}/about`,
   description:
     "A small workshop in Sault Ste. Marie running five crafts: 3D printing, laser engraving, resin art, t-shirt printing, and decal printing.",
@@ -145,7 +145,7 @@ export const aboutJsonLd = {
 export const contactJsonLd = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact fonebazar",
+  name: "Contact fonebazaar",
   url: `${siteConfig.url}/contact`,
   mainEntity: {
     "@type": "LocalBusiness",

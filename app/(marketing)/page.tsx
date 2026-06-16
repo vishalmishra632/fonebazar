@@ -37,19 +37,19 @@ const STUDIO_WORDS = [
 export const metadata: Metadata = {
   title: {
     absolute:
-      "fonebazar — 3D Printing, Laser Engraving & Custom Crafts in Sault Ste. Marie",
+      "fonebazaar — 3D Printing, Laser Engraving & Custom Crafts in Sault Ste. Marie",
   },
   description:
     "Sault Ste. Marie's creative studio for 3D printing, laser engraving, resin art, t-shirt printing, and decal printing. Order custom pieces over WhatsApp.",
   openGraph: {
-    title: "fonebazar — Where ideas become objects",
+    title: "fonebazaar — Where ideas become objects",
     description:
       "Custom 3D printing, laser engraving, resin art, t-shirt printing, and decals — made locally in Sault Ste. Marie, ordered over WhatsApp.",
-    url: "https://fonebazar.ca",
-    siteName: "fonebazar",
+    url: "https://fonebazaar.ca",
+    siteName: "fonebazaar",
     type: "website",
   },
-  alternates: { canonical: "https://fonebazar.ca" },
+  alternates: { canonical: "https://fonebazaar.ca" },
 };
 
 export default function HomePage() {

@@ -6,7 +6,7 @@ export const manifesto: readonly string[] = [
 
 // TODO: confirm founding year with client before launch
 export const originStory =
-  "fonebazar started in 2022 with a single 3D printer in a spare room and an itch to make gifts the local shops couldn't. One printer became two. Then came a laser cutter because our wooden name plaques deserved proper engraving. Then resin, then a heat press, then a vinyl cutter. Four years later, we run five crafts side-by-side — on purpose.";
+  "fonebazaar started in 2022 with a single 3D printer in a spare room and an itch to make gifts the local shops couldn't. One printer became two. Then came a laser cutter because our wooden name plaques deserved proper engraving. Then resin, then a heat press, then a vinyl cutter. Four years later, we run five crafts side-by-side — on purpose.";
 
 export interface Value {
   number: string;
@@ -48,7 +48,7 @@ export const studioLetter: readonly string[] = [
 ];
 
 // TODO: replace with owner name + role once confirmed with client
-export const studioSignature = "— fonebazar studio";
+export const studioSignature = "— fonebazaar studio";
 
 export const studioImage =
   "https://images.unsplash.com/photo-1536311820367-a38e1846ad14?w=1600&q=80&auto=format&fit=crop";

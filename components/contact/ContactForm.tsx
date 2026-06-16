@@ -163,11 +163,11 @@ export function ContactForm() {
     payload.append("message", values.message.trim());
     payload.append(
       "from_name",
-      `${values.name.trim()} via fonebazar.ca`,
+      `${values.name.trim()} via fonebazaar.ca`,
     );
     payload.append(
       "subject",
-      `New fonebazar enquiry: ${values.subject.trim() || values.service}`,
+      `New fonebazaar enquiry: ${values.subject.trim() || values.service}`,
     );
     if (file) payload.append("attachment", file);
 

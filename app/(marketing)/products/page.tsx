@@ -9,8 +9,8 @@ import { products, getFeaturedProducts } from "@/lib/data/products";
 export const metadata: Metadata = {
   title: "Every piece we make",
   description:
-    "Browse the full fonebazar catalog — 3D printing, laser engraving, resin art, t-shirt printing, and decals. Ships or picks up from Sault Ste. Marie.",
-  alternates: { canonical: "https://fonebazar.ca/products" },
+    "Browse the full fonebazaar catalog — 3D printing, laser engraving, resin art, t-shirt printing, and decals. Ships or picks up from Sault Ste. Marie.",
+  alternates: { canonical: "https://fonebazaar.ca/products" },
 };
 
 export default function ProductsPage() {

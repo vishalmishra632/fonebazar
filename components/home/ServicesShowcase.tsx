@@ -197,7 +197,7 @@ function ServicePanel({ service, stacked }: ServicePanelProps) {
         >
           <Image
             src={SERVICE_IMAGE_BY_SLUG[service.slug] ?? ""}
-            alt={`${service.name} at work in the fonebazar studio`}
+            alt={`${service.name} at work in the fonebazaar studio`}
             fill
             sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.04]"

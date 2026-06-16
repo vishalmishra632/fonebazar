@@ -7,7 +7,7 @@ export const termsConditionsDoc: LegalDocument = {
   eyebrow: "Legal",
   lastUpdated: "2026-04-18",
   intro:
-    "These are the ground rules for ordering from fonebazar — a small creative studio in Sault Ste. Marie, Ontario. They cover how orders work, who owns what, what we're responsible for, and what happens if we disagree. They're written plainly because contracts work best when both sides actually understand them.",
+    "These are the ground rules for ordering from fonebazaar — a small creative studio in Sault Ste. Marie, Ontario. They cover how orders work, who owns what, what we're responsible for, and what happens if we disagree. They're written plainly because contracts work best when both sides actually understand them.",
   sections: [
     {
       id: "agreeing",
@@ -27,7 +27,7 @@ export const termsConditionsDoc: LegalDocument = {
       number: "02",
       title: "Who we are.",
       paragraphs: [
-        'fonebazar is a sole-proprietor creative services studio based in Sault Ste. Marie, Ontario, Canada. Where these Terms say "we," "us," or "fonebazar," that\'s who we mean. Where they say "you" or "the customer," that\'s whoever\'s placing the order.',
+        'fonebazaar is a sole-proprietor creative services studio based in Sault Ste. Marie, Ontario, Canada. Where these Terms say "we," "us," or "fonebazaar," that\'s who we mean. Where they say "you" or "the customer," that\'s whoever\'s placing the order.',
         "Our contact details for anything in these Terms:",
       ],
       bullets: [
@@ -35,8 +35,8 @@ export const termsConditionsDoc: LegalDocument = {
           afterParagraph: 1,
           items: [
             "WhatsApp: +1 (705) 971-0676",
-            "Email: hello@fonebazar.ca",
-            "Mail: fonebazar studio, 253 Bruce St, Sault Ste. Marie, ON, Canada",
+            "Email: hello@fonebazaar.ca",
+            "Mail: fonebazaar studio, 253 Bruce St, Sault Ste. Marie, ON, Canada",
           ],
         },
       ],
@@ -46,7 +46,7 @@ export const termsConditionsDoc: LegalDocument = {
       number: "03",
       title: "Who can order.",
       paragraphs: [
-        "You can order from fonebazar if you're at least 18 years old, or if you have permission from a parent or guardian who's 18+. If you're ordering on behalf of a business, you confirm you have the authority to do so on that business's behalf.",
+        "You can order from fonebazaar if you're at least 18 years old, or if you have permission from a parent or guardian who's 18+. If you're ordering on behalf of a business, you confirm you have the authority to do so on that business's behalf.",
       ],
     },
     {
@@ -139,7 +139,7 @@ export const termsConditionsDoc: LegalDocument = {
           afterParagraph: 0,
           items: [
             "Your IP stays yours. Any design, logo, artwork, photograph, sketch, 3D file, or text you send us remains your property. We use it only to make your order — not for other customers, not for our catalog, not resold anywhere.",
-            "Our catalog IP stays ours. fonebazar-designed pieces (e.g., the Lattice Table Lamp, the Articulated Desk Dragon, the Ocean Flow Wall Piece) are our designs. When you buy one, you're buying a physical piece — not the design file, rights to reproduce it, or the right to resell copies of it.",
+            "Our catalog IP stays ours. fonebazaar-designed pieces (e.g., the Lattice Table Lamp, the Articulated Desk Dragon, the Ocean Flow Wall Piece) are our designs. When you buy one, you're buying a physical piece — not the design file, rights to reproduce it, or the right to resell copies of it.",
             "Modifications to our designs: if you'd like us to modify one of our catalog designs for your specific use, we'll quote it as a custom job. The modifications remain under the same catalog-IP rule.",
             "Third-party IP you don't own: we can't reproduce copyrighted designs, trademarked logos, or other protected content that you don't have rights to. If you ask us to print someone else's character, photograph, or logo without permission, we'll decline.",
           ],
@@ -155,7 +155,7 @@ export const termsConditionsDoc: LegalDocument = {
       number: "09",
       title: "Acceptable use.",
       paragraphs: [
-        "When you interact with fonebazar — through orders, messages, or otherwise — a few things are off the table:",
+        "When you interact with fonebazaar — through orders, messages, or otherwise — a few things are off the table:",
       ],
       bullets: [
         {
@@ -225,7 +225,7 @@ export const termsConditionsDoc: LegalDocument = {
       number: "13",
       title: "Our name and marks.",
       paragraphs: [
-        'The fonebazar name, wordmark, and any associated logos are ours. You can refer to us by name (for example, "made by fonebazar") but you can\'t use our name or marks in a way that implies endorsement, partnership, or affiliation without our written permission.',
+        'The fonebazaar name, wordmark, and any associated logos are ours. You can refer to us by name (for example, "made by fonebazaar") but you can\'t use our name or marks in a way that implies endorsement, partnership, or affiliation without our written permission.',
       ],
     },
     {
@@ -240,7 +240,7 @@ export const termsConditionsDoc: LegalDocument = {
           afterParagraph: 0,
           items: [
             "Message us on WhatsApp and tell us what's wrong. Most disputes end here.",
-            'If WhatsApp doesn\'t resolve it, email hello@fonebazar.ca with "Dispute" in the subject. We\'ll respond within 5 business days with a proposal.',
+            'If WhatsApp doesn\'t resolve it, email hello@fonebazaar.ca with "Dispute" in the subject. We\'ll respond within 5 business days with a proposal.',
             "If that still doesn't work, we both agree to try mediation through a Sault Ste. Marie or Ontario-based mediator before filing a lawsuit. Neither side is required to mediate, but both should make a genuine effort.",
           ],
         },
@@ -256,7 +256,7 @@ export const termsConditionsDoc: LegalDocument = {
       title: "Which law applies and where lawsuits happen.",
       paragraphs: [
         "These Terms are governed by the laws of the Province of Ontario and the federal laws of Canada that apply in Ontario. If a dispute can't be resolved informally or by mediation, it can be brought in the courts of Ontario, specifically in the judicial district covering Sault Ste. Marie.",
-        "Both you and fonebazar agree that Sault Ste. Marie courts are an appropriate venue. This isn't us picking a distant jurisdiction to inconvenience you — it's the place both we and most of our customers actually are.",
+        "Both you and fonebazaar agree that Sault Ste. Marie courts are an appropriate venue. This isn't us picking a distant jurisdiction to inconvenience you — it's the place both we and most of our customers actually are.",
       ],
     },
     {
@@ -264,7 +264,7 @@ export const termsConditionsDoc: LegalDocument = {
       number: "16",
       title: "The whole agreement.",
       paragraphs: [
-        "These Terms, together with our Refund & Return Policy and Privacy Policy, make up the complete agreement between you and fonebazar for any order you place with us. Casual chat on WhatsApp about a specific order is part of that order's terms, but doesn't change these overall Terms unless we put the change in writing and both agree.",
+        "These Terms, together with our Refund & Return Policy and Privacy Policy, make up the complete agreement between you and fonebazaar for any order you place with us. Casual chat on WhatsApp about a specific order is part of that order's terms, but doesn't change these overall Terms unless we put the change in writing and both agree.",
         "If any part of these Terms is found invalid or unenforceable by a court, the rest of the Terms stay in effect. We'd fix the invalid part — not throw the whole thing out.",
       ],
     },
@@ -282,7 +282,7 @@ export const termsConditionsDoc: LegalDocument = {
       number: "18",
       title: "Questions about any of this.",
       paragraphs: [
-        "If any part of these Terms is unclear, or your situation isn't quite covered, message us on WhatsApp or email hello@fonebazar.ca. We're happy to walk through specific clauses or explain why a clause exists. Legal documents shouldn't be a guessing game.",
+        "If any part of these Terms is unclear, or your situation isn't quite covered, message us on WhatsApp or email hello@fonebazaar.ca. We're happy to walk through specific clauses or explain why a clause exists. Legal documents shouldn't be a guessing game.",
       ],
     },
   ],

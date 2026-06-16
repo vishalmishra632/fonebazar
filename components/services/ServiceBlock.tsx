@@ -49,7 +49,7 @@ export function ServiceBlock({ service, productCount, flipped = false }: Service
             <div className="relative aspect-[5/6] overflow-hidden rounded-2xl bg-surface-1">
               <Image
                 src={service.heroImage}
-                alt={`${service.name} at work in the fonebazar studio`}
+                alt={`${service.name} at work in the fonebazaar studio`}
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"

@@ -98,7 +98,7 @@ export function StudioSection() {
                 type="button"
                 onMouseEnter={() => setHovered("main")}
                 onMouseLeave={() => setHovered(null)}
-                aria-label="fonebazar studio workshop"
+                aria-label="fonebazaar studio workshop"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -110,7 +110,7 @@ export function StudioSection() {
               >
                 <Image
                   src={studioImages.main}
-                  alt="The fonebazar workshop"
+                  alt="The fonebazaar workshop"
                   fill
                   sizes="460px"
                   className="object-cover"
@@ -148,7 +148,7 @@ export function StudioSection() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-brand/20">
                 <Image
                   src={studioImages.main}
-                  alt="The fonebazar workshop"
+                  alt="The fonebazaar workshop"
                   fill
                   sizes="100vw"
                   className="object-cover"

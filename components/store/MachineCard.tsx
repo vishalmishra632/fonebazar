@@ -50,7 +50,7 @@ export function MachineCard({ machine, index }: MachineCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={machine.image}
-          alt={`${machine.name} in the fonebazar studio`}
+          alt={`${machine.name} in the fonebazaar studio`}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover"

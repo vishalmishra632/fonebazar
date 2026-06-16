@@ -52,7 +52,7 @@ export function ContactCard() {
       secondary: "Studio hours: Mon–Sat, 10–6 (by appointment)",
       ctaLabel: "Get directions",
       ctaHref: MAPS_URL,
-      ctaAriaLabel: "Get directions to the fonebazar studio",
+      ctaAriaLabel: "Get directions to the fonebazaar studio",
       isExternal: true,
     },
   ];

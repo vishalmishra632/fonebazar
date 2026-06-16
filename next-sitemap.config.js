@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://fonebazar.ca",
+  siteUrl: process.env.SITE_URL || "https://fonebazaar.ca",
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   outDir: "./out",

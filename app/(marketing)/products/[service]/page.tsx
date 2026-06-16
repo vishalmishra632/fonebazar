@@ -22,9 +22,9 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const service = siteConfig.services.find((item) => item.slug === slug);
   if (!service) return {};
   return {
-    title: `${service.name} — fonebazar`,
-    description: `${service.name} products by fonebazar in Sault Ste. Marie. ${service.blurb}`,
-    alternates: { canonical: `https://fonebazar.ca/products/${service.slug}` },
+    title: `${service.name} — fonebazaar`,
+    description: `${service.name} products by fonebazaar in Sault Ste. Marie. ${service.blurb}`,
+    alternates: { canonical: `https://fonebazaar.ca/products/${service.slug}` },
   };
 }
 

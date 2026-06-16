@@ -98,7 +98,7 @@ export const testimonials: readonly TestimonialItem[] = [
   },
   {
     quote:
-      "We run a small e-commerce brand and fonebazar now prints all our custom tees. Quality beats what we were getting from Toronto suppliers.",
+      "We run a small e-commerce brand and fonebazaar now prints all our custom tees. Quality beats what we were getting from Toronto suppliers.",
     author: "Marcus R.",
     role: "Founder, Northwood Apparel",
   },

@@ -58,7 +58,7 @@ export function Navbar() {
           href="/"
           className="group flex items-baseline gap-1 font-display text-lg font-semibold lowercase tracking-tight"
         >
-          fonebazar
+          fonebazaar
           <span
             aria-hidden
             className="ml-0.5 inline-block h-1.5 w-1.5 rounded-full bg-brand transition-transform group-hover:scale-125"
@@ -191,7 +191,7 @@ export function Navbar() {
               <SheetTitle className="sr-only">Navigation</SheetTitle>
               <div className="flex items-center justify-between px-6 pt-6">
                 <span className="font-display text-lg font-semibold lowercase">
-                  fonebazar
+                  fonebazaar
                 </span>
                 <button
                   type="button"

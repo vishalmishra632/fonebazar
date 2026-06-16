@@ -30,7 +30,7 @@ export function LocationCard() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: EASE_HERO }}
           className="relative mx-auto aspect-[4/3] max-w-4xl overflow-hidden rounded-3xl bg-surface-2 md:aspect-[16/9]"
-          aria-label="fonebazar studio location in Sault Ste. Marie"
+          aria-label="fonebazaar studio location in Sault Ste. Marie"
         >
           <div
             aria-hidden
@@ -72,7 +72,7 @@ export function LocationCard() {
 
           <div className="absolute bottom-0 left-0 m-6 max-w-xs rounded-2xl border border-border/40 bg-background/85 p-5 backdrop-blur md:m-8">
             <p className="font-display text-base font-semibold text-foreground">
-              fonebazar studio
+              fonebazaar studio
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
               253 Bruce St, Sault Ste. Marie, ON, Canada

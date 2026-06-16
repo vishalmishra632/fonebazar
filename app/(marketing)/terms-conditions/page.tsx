@@ -5,16 +5,16 @@ import { escapeJsonLd, legalJsonLd } from "@/lib/seo/structured-data";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Terms & Conditions — fonebazar",
+    absolute: "Terms & Conditions — fonebazaar",
   },
   description:
-    "The ground rules for ordering from fonebazar. Covers ordering, IP, liability, and what happens when things go wrong. Plain-language, Ontario-governed.",
-  alternates: { canonical: "https://fonebazar.ca/terms-conditions" },
+    "The ground rules for ordering from fonebazaar. Covers ordering, IP, liability, and what happens when things go wrong. Plain-language, Ontario-governed.",
+  alternates: { canonical: "https://fonebazaar.ca/terms-conditions" },
   openGraph: {
-    title: "Terms & Conditions — fonebazar",
+    title: "Terms & Conditions — fonebazaar",
     description:
-      "The ground rules for ordering from fonebazar. Plain-language, Ontario-governed.",
-    url: "https://fonebazar.ca/terms-conditions",
+      "The ground rules for ordering from fonebazaar. Plain-language, Ontario-governed.",
+    url: "https://fonebazaar.ca/terms-conditions",
     type: "website",
   },
 };

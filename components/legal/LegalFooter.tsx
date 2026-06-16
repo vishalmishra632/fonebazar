@@ -12,7 +12,7 @@ interface LegalFooterProps {
 
 export function LegalFooter({ currentSlug, lastUpdated }: LegalFooterProps) {
   const whatsappHref = buildWhatsAppCustomURL(
-    "Hi fonebazar, I have a question about one of your policies.",
+    "Hi fonebazaar, I have a question about one of your policies.",
   );
 
   return (

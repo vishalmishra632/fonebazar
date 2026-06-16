@@ -16,7 +16,7 @@ export interface GalleryItem {
 export const gallery: GalleryItem[] = [
   {
     src: PH("1547609434-b732edfee020"),
-    alt: "The fonebazar studio floor with machines running",
+    alt: "The fonebazaar studio floor with machines running",
     caption: "The whole room, mid-Tuesday.",
     aspect: "5/4",
   },

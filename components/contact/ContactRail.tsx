@@ -38,7 +38,7 @@ export function ContactRail() {
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Message fonebazar on WhatsApp"
+          aria-label="Message fonebazaar on WhatsApp"
           className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand transition hover:brightness-110"
         >
           Open WhatsApp <span aria-hidden>→</span>
@@ -60,7 +60,7 @@ export function ContactRail() {
         </p>
         <a
           href={`mailto:${siteConfig.contact.email}`}
-          aria-label="Send an email to fonebazar"
+          aria-label="Send an email to fonebazaar"
           className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand transition hover:brightness-110"
         >
           Send an email <span aria-hidden>→</span>

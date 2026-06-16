@@ -26,7 +26,7 @@ export const privacyPolicyDoc: LegalDocument = {
       number: "02",
       title: "What we actually collect.",
       paragraphs: [
-        "Here's the complete list of personal information we receive when you use fonebazar:",
+        "Here's the complete list of personal information we receive when you use fonebazaar:",
       ],
       bullets: [
         {
@@ -40,7 +40,7 @@ export const privacyPolicyDoc: LegalDocument = {
       ],
       calloutAfter: {
         label: "Cart data",
-        body: 'Your cart is saved in your own browser\'s localStorage under the key "fonebazar-cart". It never leaves your device. We cannot see what\'s in your cart until you tap Place Order and the content lands in our WhatsApp.',
+        body: 'Your cart is saved in your own browser\'s localStorage under the key "fonebazaar-cart". It never leaves your device. We cannot see what\'s in your cart until you tap Place Order and the content lands in our WhatsApp.',
       },
     },
     {
@@ -121,7 +121,7 @@ export const privacyPolicyDoc: LegalDocument = {
       title: "Where your data physically lives.",
       paragraphs: [
         "Our website is hosted on Vercel's global edge network. When you load a page from Sault Ste. Marie, you're likely served by a data center in Toronto or nearby.",
-        "Contact form submissions are routed through Web3Forms' servers and land in a Canadian email inbox — hello@fonebazar.ca — which we access from Canada.",
+        "Contact form submissions are routed through Web3Forms' servers and land in a Canadian email inbox — hello@fonebazaar.ca — which we access from Canada.",
         "WhatsApp conversations are stored on Meta's infrastructure per their terms, which may include servers outside Canada. We access them from our WhatsApp Business account in Canada.",
       ],
       calloutAfter: {
@@ -169,7 +169,7 @@ export const privacyPolicyDoc: LegalDocument = {
       ],
       calloutAfter: {
         label: "How to exercise these rights",
-        body: "Message us on WhatsApp or email hello@fonebazar.ca. Put \"Privacy request\" in the subject if you're emailing. We respond within a week.",
+        body: "Message us on WhatsApp or email hello@fonebazaar.ca. Put \"Privacy request\" in the subject if you're emailing. We respond within a week.",
       },
     },
     {
@@ -183,8 +183,8 @@ export const privacyPolicyDoc: LegalDocument = {
         {
           afterParagraph: 0,
           items: [
-            "HTTPS everywhere. The entire site is served over TLS. There's no way to visit fonebazar.ca over plain HTTP.",
-            "Email account with two-factor authentication. Our hello@fonebazar.ca inbox requires a second factor to sign in.",
+            "HTTPS everywhere. The entire site is served over TLS. There's no way to visit fonebazaar.ca over plain HTTP.",
+            "Email account with two-factor authentication. Our hello@fonebazaar.ca inbox requires a second factor to sign in.",
             "WhatsApp Business account with two-step verification enabled.",
             "No shared credentials. No team members share passwords; each has their own access.",
             "Minimal attack surface. We don't run a database on this website. There's no user login, no password storage, no admin panel. Nothing to hack that we're responsible for.",
@@ -243,8 +243,8 @@ export const privacyPolicyDoc: LegalDocument = {
           afterParagraph: 0,
           items: [
             "WhatsApp: +1 (705) 971-0676",
-            "Email: hello@fonebazar.ca (put \"Privacy\" in the subject)",
-            "Mail: fonebazar studio, 253 Bruce St, Sault Ste. Marie, ON, Canada",
+            "Email: hello@fonebazaar.ca (put \"Privacy\" in the subject)",
+            "Mail: fonebazaar studio, 253 Bruce St, Sault Ste. Marie, ON, Canada",
           ],
         },
       ],
